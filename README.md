@@ -1,6 +1,5 @@
-# jquery-tree-tabs
-A Simple Single Page Application Framework with systemJS and jquery
-
+# modular-jquery-example
+Example SPA project which implements dynamic tabs using treeview
 
 
 ## Dependencies
