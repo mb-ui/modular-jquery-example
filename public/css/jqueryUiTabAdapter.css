@@ -1,0 +1,40 @@
+﻿.ui-tabs .ui-tabs-nav li {
+    float: right;
+}
+
+.ui-tabs-tab > .ui-icon-close {
+    position: absolute;
+    left: 1px;
+    top: 3px;
+}
+
+.ui-tabs-panel {
+    text-align: right;
+    direction: rtl;
+    padding: 5px !IMPORTANT;
+}
+
+#horizentalTabList > li, #horizentalTabList > li > a {
+    outline: none !important;
+}
+
+    #horizentalTabList > li > a:hover {
+        cursor: pointer;
+    }
+#horizentalTabs {
+    height: 100%;
+    position: relative;
+    padding: 2px;
+}
+    #horizentalTabs > .ui-tabs-panel {
+        position: absolute;
+        top: 37px;
+        bottom: 2px;
+        right: 2px;
+        left: 2px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+#horizentalTabList > li > a {
+    padding: 2px 12px 2px 12px;
+}

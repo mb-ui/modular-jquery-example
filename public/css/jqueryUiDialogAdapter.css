@@ -1,0 +1,19 @@
+﻿.dialogAdapter.ui-dialog .ui-dialog-titlebar-close {
+    left: .3em;
+    right: auto;
+}
+.dialogAdapter .ui-dialog-titlebar {
+    direction: rtl;
+    text-align: right;
+    cursor:move;
+}
+.dialogAdapter.ui-dialog .ui-dialog-title {
+    float: right;
+}
+html body div.ui-widget-overlay.ui-front {
+    background: #ffffff66;
+    cursor: not-allowed;
+}
+.dialogAdapter.ui-dialog {
+    box-shadow: 0px 2px 3px #9b9999;
+}

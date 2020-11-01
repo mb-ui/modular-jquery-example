@@ -1,0 +1,28 @@
+﻿
+* {
+    box-sizing: border-box;
+}
+
+.topPanelSearchBox .row, .dialogAdapter .row {
+    display: inline-block;
+}
+
+.dialogAdapter .row {
+    float: right;
+}
+
+    .topPanelSearchBox .row [class*="col-"], .dialogAdapter .row [class*="col-"] {
+        float: right;
+        padding: 15px;
+        padding-right: 0px;
+        width: 250px;
+        display: inline-block;
+        text-align: right;
+        direction: rtl;
+    }
+
+    .topPanelSearchBox .row > [class*="col-"]:first-child, .dialogAdapter .row > [class*="col-"]:first-child {
+        width: 150px;
+        text-align: left;
+        padding-left: 5px;
+    }

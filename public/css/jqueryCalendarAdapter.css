@@ -1,0 +1,28 @@
+﻿button.ui-datepicker-cmd.ui-datepicker-cmd-clear.ui-state-default.ui-corner-all, button.ui-datepicker-cmd.ui-datepicker-cmd-close.ui-state-default.ui-corner-all {
+    padding: 0px;
+}
+
+    button.ui-datepicker-cmd.ui-datepicker-cmd-clear.ui-state-default.ui-corner-all > span.ui-icon, button.ui-datepicker-cmd.ui-datepicker-cmd-close.ui-state-default.ui-corner-all > span.ui-icon {
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+
+a.ui-datepicker-cmd.ui-datepicker-cmd-next {
+    direction: rtl;
+    padding-right: 10px;
+}
+
+.ui-datepicker-group .ui-datepicker-header {
+    height: 2em;
+}
+
+.calendarTriggerBtn {
+    float: right;
+    cursor: pointer;
+    margin-left: 2px;
+    padding: 2px;
+}
+
+input.ui-widget.ui-widget-content.is-calendarsPicker {
+    width: auto !important;
+}

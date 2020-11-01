@@ -1,0 +1,10 @@
+﻿.ui-timepicker-container {
+    z-index: 102 !important;
+    padding-right:5px;
+}
+.ui-timepicker {
+    /*height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100% !important;*/
+}

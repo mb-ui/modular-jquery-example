@@ -1,0 +1,25 @@
+﻿
+.no_checkbox {
+    pointer-events: none;
+}
+
+    .no_checkbox > i.jstree-checkbox {
+        display: none;
+    }
+
+#sideMenuTree.multiSelectOverflow a.jstree-clicked > i.jstree-checkbox {
+    pointer-events: all;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.jstree-icon.ui-icon {
+    width: 16px !important;
+    height: 16px !important;
+    margin-top: 3px;
+}
+
+#sideMenuTree.multiSelectOverflow i.jstree-checkbox, #sideMenuTree.multiSelectOverflow i.jstree-checkbox:hover {
+    cursor: not-allowed;
+    /*display:none;*/
+}

@@ -1,0 +1,32 @@
+{
+  "name": "jquery-tree-tabs",
+  "title": "jquery-tree-tabs",
+  "version": "1.0.0",
+  "description": "A Simple Single Page Application Framework with systemJS and jquery",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mb-ui/jquery-tree-tabs.git"
+  },
+  "author": {
+    "name": "Mohsen Biglari",
+    "email": "biglary.mohsen.new69@gmail.com"
+  },
+  "keywords": [
+    "jquery",
+    "spa",
+    "single page application",
+    "systemJS",
+    "tab",
+    "tree",
+    "framework"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mb-ui/jquery-tree-tabs/issues"
+  },
+  "homepage": "https://github.com/mb-ui/jquery-tree-tabs#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

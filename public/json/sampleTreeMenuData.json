@@ -1,0 +1,67 @@
+﻿{
+  "data": [
+    {
+      "title": "عملیات",
+      "tooltip": "عملیات",
+      "id": "1",
+      "cssIconClass": "",
+      "type": "folder",
+      "jsModulePath": "",
+      "parentId": ""
+    },
+    {
+      "title": "استعلام اقساط",
+      "tooltip": "استعلام اقساط",
+      "cssIconClass": "",
+      "type": "tab",
+      "jsModulePath": "callInstallment/index.js",
+      "id": "2",
+      "parentId": "1"
+    },
+    {
+      "title": "پرداخت اقساط",
+      "tooltip": "پرداخت اقساط",
+      "cssIconClass": "",
+      "type": "tab",
+      "jsModulePath": "registerInstallment/index.js",
+      "id": "3",
+      "parentId": "1"
+    },
+    {
+      "title": "ماشین ها",
+      "tooltip": "ماشین ها",
+      "cssIconClass": "",
+      "type": "tab",
+      "jsModulePath": "car/index.js",
+      "id": "4",
+      "parentId": ""
+    },
+    {
+      "title": "کاربران",
+      "tooltip": "کاربران",
+      "cssIconClass": "",
+      "type": "tab",
+      "jsModulePath": "user/index.js",
+      "id": "5",
+      "parentId": "1"
+    },
+    {
+      "title": "2ثبت نام",
+      "tooltip": "2ثبت نام",
+      "cssIconClass": "",
+      "type": "dialog",
+      "jsModulePath": "user/createDialog/index.js",
+      "id": "7",
+      "parentId": "1"
+    },
+    {
+      "title": "ثبت نام",
+      "tooltip": "ثبت نام",
+      "cssIconClass": "",
+      "type": "dialog",
+      "jsModulePath": "user/createDialog/index.js",
+      "id": "6",
+      "parentId": ""
+    }
+  ]
+}

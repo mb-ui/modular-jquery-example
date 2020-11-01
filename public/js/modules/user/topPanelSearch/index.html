@@ -1,0 +1,53 @@
+﻿<div class="ui-widget ui-widget-content ui-corner-all topPanelSearchBox">
+    <div class="ui-state-default ui-corner-all">
+        <span class="title">جستجو</span>
+        <span class="ui-icon ui-icon-circle-triangle-n toggleTopSearchPanel"></span>
+    </div>
+    <div class="searchBody">
+        <form code="form">
+            <div class="row">
+                <div class="col-d-1 col-m-1 label">
+                    <label for="Country">کشور</label>
+                </div>
+                <div class="col-d-3 col-m-3">
+                    <input type="text" code="Country" class="ui-widget ui-widget-content" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-d-1 col-m-1 label">
+                    <span>پایتخت</span>
+                </div>
+                <div class="col-d-3 col-m-3">
+                    <input type="text" code="Capital" class="ui-widget ui-widget-content validate[required]" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-d-1 col-m-1 label">
+                    <label for="PhoneNumber">شماره تلفن</label>
+                </div>
+                <div class="col-d-3 col-m-3">
+                    <select multiple="multiple" code="PhoneNumber" class="ui-widget ui-widget-content" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-d-1 col-m-2 label">
+                    <label for="FromDate">تاریخ</label>
+                </div>
+                <div class="col-d-5 col-m-4">
+                    <input type="text" code="FromDate" size="20" readonly class="ui-widget ui-widget-content validate[required,custom[date]]">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-d-1 col-m-2 label">
+                    <label for="Sex">جنسیت</label>
+                </div>
+                <div class="col-d-5 col-m-4">
+                    <select code="Sex" class="ui-widget ui-widget-content" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <button class="ui-button ui-widget ui-corner-all dpk-button" code="searchSubmit">
+        <span class="ui-icon ui-icon-check"></span>تایید
+    </button>
+</div>
