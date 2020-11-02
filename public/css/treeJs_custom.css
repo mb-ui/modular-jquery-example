@@ -1,25 +1,41 @@
-﻿
-.no_checkbox {
+﻿.no_checkbox {
     pointer-events: none;
 }
 
-    .no_checkbox > i.jstree-checkbox {
-        display: none;
-    }
+.no_checkbox>i.jstree-checkbox {
+    display: none;
+}
 
-#sideMenuTree.multiSelectOverflow a.jstree-clicked > i.jstree-checkbox {
+#sideMenuTree.multiSelectOverflow a.jstree-clicked>i.jstree-checkbox {
     pointer-events: all;
-    cursor: pointer;
-    display: inline-block;
+    cursor        : pointer;
+    display       : inline-block;
 }
 
 .jstree-icon.ui-icon {
-    width: 16px !important;
-    height: 16px !important;
+    width     : 16px !important;
+    height    : 16px !important;
     margin-top: 3px;
 }
 
-#sideMenuTree.multiSelectOverflow i.jstree-checkbox, #sideMenuTree.multiSelectOverflow i.jstree-checkbox:hover {
-    cursor: not-allowed;
+#sideMenuTree.multiSelectOverflow i.jstree-checkbox,
+#sideMenuTree.multiSelectOverflow i.jstree-checkbox:hover {
+    cursor   : not-allowed;
     /*display:none;*/
+}
+
+.ui-icon.ui-icon-folder-open.jstree-themeicon-custom {
+    background-position: -16px -96px !important;
+}
+
+.ui-icon.ui-icon-extlink.jstree-themeicon-custom {
+    background-position: -32px -80px !important;
+}
+
+.ui-icon.ui-icon-newwin.jstree-themeicon-custom {
+    background-position: -48px -80px !important;
+}
+
+body {
+    text-shadow: none;
 }

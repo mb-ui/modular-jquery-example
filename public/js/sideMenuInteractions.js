@@ -1,34 +1,14 @@
 ﻿(function () {
-    var body, bodyWidth,bodyHeight, container, verticalTabList, sideMenuResizer, verticalTabListWidth, verticalPanelList, horizentalMenuContainer, getTabContent = (function () {
-        var tabContents = {};
-        return function (param) {
-            var tabEl = param.tabEl, callback = param.callback || function () { },src = tabEl.attr('src');
-            if (tabContents.hasOwnProperty(src) && tabContents.src)
-                callback(tabContents.src);
-            else {
-                $.ajax({
-                    url: tabEl.attr('src'),
-                    dataType: 'html',
-                    success: function (data) {
-                        tabContents[src] = data; callback(data);
-                    },
-                    error: function(e) { }
-                });
-            }
-        };
-    })();
+    var body, bodyWidth, bodyHeight, container, verticalTabList, sideMenuResizer, verticalTabListWidth, verticalPanelList, horizentalMenuContainer
+        , verticalPanelTemplate = '<div class="verticalPanel">loading...</div>';
     function open(el) {
         var src = el.attr('src');
         if (verticalPanelList.children().first().attr('tabSrc') !== src) {
             verticalPanelList.empty().append('<p>loading ....</p>');
-            getTabContent({
-                tabEl: el, callback: function (data) {
-                    var container = '<div class="verticalPanel" tabSrc="@src"></div>';
-                    container = container.replace('@src', src);
-                    container = $(container);
-                    verticalPanelList.empty().append(container);
-                    container.append(data);
-                }
+            $$.dynamicImport(src).then(function (result) {
+                var panelEl = $(verticalPanelTemplate);
+                result.default({ panelElement: panelEl });
+                verticalPanelList.empty().append(panelEl);
             });
         }
         container.removeClass("hiddenVerticalPanelList");
@@ -52,7 +32,7 @@
         $el.hasClass('sideMenuIcon') ? toggleOpen($el) :
             ($el.hasClass('ui-icon') && toggleOpen($el.closest('.sideMenuIcon')));
     }
-    addEventListener('DOMContentLoaded', function(e) {
+    addEventListener('DOMContentLoaded', function (e) {
         verticalPanelList = verticalPanelList || $('#verticalPanelList');
         container = container || $('#container');
         horizentalMenuContainer = horizentalMenuContainer || $('#horizentalMenuContainer');
@@ -70,7 +50,7 @@
             containment: "document",
             helper: "clone",
             containment: '#resizerContainer',
-            cursor:'ew-resize',
+            cursor: 'ew-resize',
             start: function (event, ui) {
             }
         });

@@ -1,18 +1,19 @@
-﻿html, body {
-    width: 100%;
-    height: 100%;
-    left: 0px;
-    top: 0px;
-    margin: 0px;
-    padding: 0px;
+﻿html,
+body {
+    width   : 100%;
+    height  : 100%;
+    left    : 0px;
+    top     : 0px;
+    margin  : 0px;
+    padding : 0px;
     position: fixed;
 }
 
 @font-face {
     font-family: IRANSansWeb;
-    font-style: normal;
+    font-style : normal;
     font-weight: 100;
-    src: url(../fonts/IRANSansWeb/IRANSansWeb\(FaNum\)_Light.woff2);
+    src        : url(../fonts/IRANSansWeb/IRANSansWeb\(FaNum\)_Light.woff2);
 }
 
 html body * {
@@ -21,50 +22,53 @@ html body * {
 
 #container {
     position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
+    left    : 0px;
+    right   : 0px;
+    top     : 0px;
+    bottom  : 0px;
 }
 
 #toolbar {
-    width: 100%;
-    height: 35px;
-    text-align: center;
-    padding: 5px;
+    width      : 100%;
+    height     : 35px;
+    text-align : center;
+    padding    : 5px;
     font-weight: bold;
-    font-size: 16px;
+    font-size  : 16px;
 }
 
 .ui-icon {
     cursor: pointer;
 }
 
-.dpk-button, input {
+.dpk-button,
+input {
     outline: none !important;
 }
 
 .dpk-button {
-    padding: 4px 10px 4px 10px;
-    cursor: pointer;
+    padding: 2px 10px 2px 10px;
+    cursor : pointer;
 }
 
-    .dpk-button > span {
-        margin-left: 5px;
-    }
+.dpk-button>span {
+    margin-left: 5px;
+}
 
 
 /*li.multiple >label>span{
     float:left;
 }*/
-.ms-drop ul > li.multiple {
+.ms-drop ul>li.multiple {
     width: 100% !important;
 }
 
-.ms-drop input[type="radio"], .ms-drop input[type="checkbox"] {
+.ms-drop input[type="radio"],
+.ms-drop input[type="checkbox"] {
     right: 0px;
 }
 
-li.multiple > label > span, li.ms-select-all > label > input[data-name="selectAll"] + span {
+li.multiple>label>span,
+li.ms-select-all>label>input[data-name="selectAll"]+span {
     margin-right: 20px;
 }

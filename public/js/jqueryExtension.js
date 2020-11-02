@@ -1,6 +1,6 @@
 ﻿(function ($) {
     $.extend({
-        $getTemplate: function (url) {
+        $getResources: function (url) {
             url.constructor === Array || (url = [url]);
             for (var i = 0, l = url.length; i < l; i++) {
                 url[i] = $.ajax({

@@ -4,7 +4,7 @@ import search from './topPanelSearch/index.js';
 import createDialog from './createDialog/index.js';
 import api from '../shared/api/index.js';
 export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
-    return api.getTemplate(['js/modules/user/index.html', 'js/modules/user/topPanelsearch/index.html'])
+    return api.getResources(['js/modules/user/index.html', 'js/modules/user/topPanelsearch/index.html'])
         .then(function ([indexHtml, searchHtml]) {
             pEl.empty().append(searchHtml).append(indexHtml);
             const $gridEl = pEl.findByCode('grid');
@@ -26,7 +26,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 loadonce: true,
                 data: simpleLocalData(),
                 datatype: 'local',
-                height: '500',
+                height: '200',
                 multiselect: true,
                 colNames: ['Country', 'Country Code', 'Developed', 'Capital', 'Date'],
                 colModel: [{
@@ -57,11 +57,11 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 Capital: '',
                 Country: '',
                 PhoneNumber: [1, 3],
-                FromDateString:'1399/6/13'
+                FromDateString: '1399/6/13'
             });
             pEl.findByCode('searchSubmit').click(function (e) {
                 //searchSubmitClick({ searchAccessor, $gridEl });
-                
+
                 //form.validationEngine('attach', {
                 //    validationEventTrigger: "blur",
                 //    scroll: true,

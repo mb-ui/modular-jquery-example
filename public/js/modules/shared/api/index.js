@@ -14,13 +14,15 @@
             that.lastDialogEl = that.lastDialogEl.dialogAdapter('getPerviousDialog') || '';
         });
     }
-    getTemplate(url) {
+    getResources(url) {
         url.constructor === Array || (url = [url]);
         url.map((item, i, arr) => {
+            const urlArray = item.split('.')
+                , dataType = urlArray[urlArray.length - 1].includes('htm') ? 'html' : 'json';
             arr[i] = $.ajax({
-                url: arr[i],
+                url: item,
                 type: 'get',
-                dataType: 'html'
+                dataType
             });
         });
         return $.when.apply(undefined, url).then(function () {

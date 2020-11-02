@@ -91,7 +91,7 @@
                             $.each(_btns, function (i) { _temp += i });
                             $("#" + id).append(_temp).click(function (e) {
                                 var el = findEl($(e.target)), _temp = el[0].outerHTML;
-                                _btns[_temp] && _btns[_temp]({ e: e, $gridEl: $el});
+                                _btns[_temp] && _btns[_temp]({ e: e, $gridEl: $el });
                             });
                         })();
                         options.pager && $el.navGrid(options.pager, {
@@ -120,33 +120,6 @@
                                 }
                             }
                         });
-                        //.jqGrid('navButtonAdd', options.pager, {
-                        //    caption: "Columns",
-                        //    title: "Reorder Columns",
-                        //    onClickButton: function () {
-                        //        $el.jqGrid('columnChooser');
-                        //    }
-                        //});
-                        //return $el;
-                        //.jqGrid('gridResize', { handles: "n, e, s, w", containment: '#tab_' + options.pager.replace('#','').split('_')[0]});
-                        //.jqGrid('filterToolbar', {
-                        //    autoSearch: true,
-                        //    beforeSearch: function () {
-                        //        var postData = grid.jqGrid('getGridParam', 'postData');
-                        //        if (!postDataHasParams(postData)) {
-                        //            return false;
-                        //        } else if (postData.Code !== null) {
-                        //            var numToSearch = Number(postData.Code);
-                        //            if (isNaN(numToSearch)) {
-                        //                alert('Country Code can only contain numeric values');
-                        //                return true;
-                        //            } else {
-                        //                return false;
-                        //            }
-                        //        }
-                        //        return false;
-                        //    }
-                        //});
                         return $el;
                     } else {
                         return this.jqGrid(arg[0]);

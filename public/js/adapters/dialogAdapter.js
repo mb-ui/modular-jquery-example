@@ -50,7 +50,7 @@
                         });
                         if (workingWithurl) {
                             setting.beforeLoadTemplate();
-                            $.$getTemplate([ex.url]).then(setting.afterLoadTemplate);
+                            $.$getResources([ex.url]).then(setting.afterLoadTemplate);
                         }
                         $('body').append(this);
                         return this.dialog(setting);
