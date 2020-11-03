@@ -37,6 +37,14 @@ html body * {
     font-size  : 16px;
 }
 
+#sideMenuContainer {
+    top     : 36px;
+    position: absolute;
+    bottom  : 1px;
+    left    : 0px;
+    right   : 0px;
+}
+
 .ui-icon {
     cursor: pointer;
 }

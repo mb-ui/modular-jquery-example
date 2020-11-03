@@ -4,11 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>modular-jquery-example</title>
+    <title>jquery-tree-tabs</title>
     <script src="external/systemJS/es6Detection.js"></script>
     <script src="external/systemJS/es6Pollifyls.js"></script>
     <link href="external/jquery-ui-1.12.1/jquery-ui.min.css" rel="stylesheet" />
     <link href="external/jstree-master/dist/themes/default/style.min.css" rel="stylesheet" />
+    <!-- <link href="external/jstree-master/dist/themes/jsTree.rtl.css" rel="stylesheet" /> -->
     <link href="external/jquery-ui-1.12.1/themes/cupertino/jquery-ui.min.css" rel="stylesheet"
         id="1ACC78AA-7D66-4877-B797-2298E5E88295" />
     <link href="external/jqGrid/ui.jqgrid.min.css" rel="stylesheet" />
@@ -35,10 +36,33 @@
 <body class="">
     <div id="container" class="">
         <div id="toolbar" class="ui-state-active">عنوان نرم افزار</div>
-        <div id="sideMenuContainer">
-            <div id="horizentalMenuContainer" class="">
+        <div id="resizerContainer"></div>
+        <div id="verticalTabList" class="ui-widget ui-widget-content">
+            <div src="treeMenu/index.js" class="sideMenuIcon ui-state-default"><span
+                    class="ui-icon ui-icon-triangle-1-w"></span><span class="ui-icon ui-icon-folder-open"></span></div>
+            <div src="Home/GetSideMenuByTitle?title=User" class="sideMenuIcon ui-state-default"><span
+                    class="ui-icon ui-icon-triangle-1-w"></span><span class="ui-icon ui-icon-person"></span></div>
+            <div src="Home/GetSideMenuByTitle?title=Setting" class="sideMenuIcon ui-state-default"><span
+                    class="ui-icon ui-icon-triangle-1-w"></span><span class="ui-icon ui-icon-gear"></span></div>
+            <div src="Home/GetSideMenuByTitle?title=Help" class="sideMenuIcon ui-state-default"><span
+                    class="ui-icon ui-icon-triangle-1-w"></span><span class="ui-icon ui-icon-info"></span></div>
+            <div src="Home/GetSideMenuByTitle?title=AboutUs" class="sideMenuIcon ui-state-default"><span
+                    class="ui-icon ui-icon-triangle-1-w"></span><span class="ui-icon ui-icon-flag"></span></div>
+        </div>
+        <div id="verticalPanelList" class="ui-widget ui-widget-content ui-corner-let"></div>
+        <div id="horizentalMenuContainer" class="">
+            <div id="horizentalMenuContainerInner" class="ui-widget ui-widget-content ui-corner-all">
+                <div id="horizentalTabs">
+                    <ul id="horizentalTabList">
+                        <li><a href="#home">پیشخوان</a></li>
+                    </ul>
+                    <div id="home">
+                        <p>home content.</p>
+                    </div>
+                </div>
             </div>
         </div>
+        <div id="sideMenuResizer" class="sideMenuResizer ui-state-default"></div>
     </div>
     <script src="external/jquery/jquery-3.5.1.min.js"></script>
     <script src="external/jquery-ui-1.12.1/jquery-ui.min.js"></script>
@@ -53,6 +77,7 @@
     <script src="external/jQuery-Validation-Engine-master/js/languages/jquery.validationEngine-fa.js"></script>
     <script src="external/jQuery-Validation-Engine-master/js/jquery.validationEngine.min.js"></script>
     <script src="external/jquery.timepicker/jquery.timepicker.min.js"></script>
+    <script src="js/sideMenuInteractions.js"></script>
     <script src="external/jstree-master/dist/jstree.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/jqueryExtension.js"></script>
@@ -64,19 +89,15 @@
     <script src="js/adapters/validationAdapter.js"></script>
     <script src="js/adapters/timepickerAdapter.js"></script>
     <script>
-        $('#sideMenuContainer').sideMenu({
-            defaultOpen: true
-            , dir: 'rtl'
+        $('#horizentalTabs').tabAdapter({
+            onClose: (function () {
+                var treeEl;
+                return function (e, tabId) {
+                    treeEl = treeEl || $('#sideMenuTree');
+                    treeEl.jstree('deselect_node', tabId);
+                }
+            })()
         });
-        // $('#horizentalTabs').tabAdapter({
-        //     onClose: (function () {
-        //         var treeEl;
-        //         return function (e, tabId) {
-        //             treeEl = treeEl || $('#sideMenuTree');
-        //             treeEl.jstree('deselect_node', tabId);
-        //         }
-        //     })()
-        // });
     </script>
 </body>
 
