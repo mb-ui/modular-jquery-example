@@ -81,7 +81,7 @@ function createTree(dataTree) {
         api.search($(this).val());
     });
     var openDialog = function (node) {
-        $$.dynamicImport(node.data.modulePath).then(function (result) {
+        $$.importModule(node.data.modulePath).then(function (result) {
             result.default({ baseID: '', panelElement: null, treeNodeObj: node });
         });
     };

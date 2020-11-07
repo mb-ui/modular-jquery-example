@@ -5,7 +5,7 @@
         var src = el.attr('src');
         if (verticalPanelList.children().first().attr('tabSrc') !== src) {
             verticalPanelList.empty().append('<p>loading ....</p>');
-            $$.dynamicImport(src).then(function (result) {
+            $$.importModule(src).then(function (result) {
                 var panelEl = $(verticalPanelTemplate);
                 result.default({ panelElement: panelEl });
                 verticalPanelList.empty().append(panelEl);

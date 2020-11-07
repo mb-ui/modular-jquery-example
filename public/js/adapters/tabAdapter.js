@@ -27,7 +27,7 @@
             if (!$('#' + rootId + ' a[href="#' + id + '"]').length) {
                 var panelElement = $('<div id="' + id + '">در حال بارگذاری ...</div>');
                 var aEl = $('<a href="#' + id + '">' + tabObj.text + '</a>').one('click', function (e) {
-                    $$.dynamicImport(tabObj.data.modulePath).then(function (result) {
+                    $$.importModule(tabObj.data.modulePath).then(function (result) {
                         panelElement.empty();
                         return result.default({
                             treeNodeObj: tabObj,

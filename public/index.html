@@ -89,7 +89,7 @@
                 ],
                 onLoadTemplate: function (menuObj, $panelEl) {
                     if (menuObj.moduleUrl) {
-                        $$.dynamicImport(menuObj.moduleUrl).then(function (result) {
+                        $$.importModule(menuObj.moduleUrl).then(function (result) {
                             result.default($panelEl);
                         });
                     }

@@ -1,6 +1,6 @@
 var $$ = $$ || {};
 if (!window.supportsDynamicImport) {
-    $$.dynamicImport = function (modulePath) { return System.import('./js/modules/' + modulePath); };
+    $$.importModule = function (modulePath) { return System.import('./js/modules/' + modulePath); };
     var systemJsLoaderTag = document.createElement('script');
     systemJsLoaderTag.src = './external/systemJS/system.js';
     systemJsLoaderTag.addEventListener('load', function () {

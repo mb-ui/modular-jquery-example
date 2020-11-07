@@ -9,7 +9,7 @@ var $$ = $$ || {};
     };
     let result = arrowFunctionDetection();
     window.supportsDynamicImport = true;
-    $$.dynamicImport = function (modulePath) {
+    $$.importModule = function (modulePath) {
         return import('../../js/modules/' + modulePath);
     };
 })();
