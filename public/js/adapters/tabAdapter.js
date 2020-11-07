@@ -2,11 +2,12 @@
     tabAdapter: (function () {
         var _ini = function (rootEl, options) {
             options = options || {};
+            var op = $.extend({}, $.fn.tabAdapter, options);
             rootEl.on("click", "span.ui-icon-close", function (e) {
                 var panelId = $(this).closest("li").remove().attr("aria-controls");
                 $("#" + panelId).remove();
                 rootEl.tabs("refresh");
-                (options.onClose && (typeof options.onClose === 'function')) && options.onClose(e, panelId.replace('tab_', ''));
+                (op.onClose && (typeof op.onClose === 'function')) && op.onClose(e, panelId.replace('tab_', ''));
             });
             return rootEl.tabs(options);
         }, _closeTab = function (rootEl, tabId) {

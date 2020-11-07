@@ -36,7 +36,17 @@
     <div id="container" class="">
         <div id="toolbar" class="ui-state-active">عنوان نرم افزار</div>
         <div id="sideMenuContainer">
-            <div id="horizentalMenuContainer" class="">
+            <div id="horizentalMenuContainer" class="rtl" style="right:346px;">
+                <div id="horizentalMenuContainerInner" class="ui-widget ui-widget-content ui-corner-all">
+                    <div id="horizentalTabs">
+                        <ul id="horizentalTabList">
+                            <!-- <li><a href="#home">پیشخوان</a></li> -->
+                        </ul>
+                        <!-- <div id="home">
+                            <p>home content.</p>
+                        </div> -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,19 +74,51 @@
     <script src="js/adapters/validationAdapter.js"></script>
     <script src="js/adapters/timepickerAdapter.js"></script>
     <script>
-        $('#sideMenuContainer').sideMenu({
-            defaultOpen: true
-            , dir: 'rtl'
-        });
-        // $('#horizentalTabs').tabAdapter({
-        //     onClose: (function () {
-        //         var treeEl;
-        //         return function (e, tabId) {
-        //             treeEl = treeEl || $('#sideMenuTree');
-        //             treeEl.jstree('deselect_node', tabId);
-        //         }
-        //     })()
-        // });
+        (function () {
+            var horizentalTabsContainer = $('#horizentalMenuContainer');
+            $('#sideMenuContainer').sideMenu({
+                dir: 'rtl',//optional
+                tabListWidth: 40,//optional
+                panelWidth: 300,//optional
+                panelMinWidth: 150,//optional
+                data: [
+                    { iconClass: 'ui-icon ui-icon-flag', id: 'aboutUs', templateUrl: 'html/aboutUs.html', tooltip: 'About Us' },
+                    { iconClass: 'ui-icon ui-icon-folder-open', id: 'menu', templateUrl: 'js/modules/treeMenu/index.html', moduleUrl: 'treeMenu/index.js', tooltip: 'Menu' },
+                    { iconClass: 'ui-icon ui-icon-gear', id: 'setting', templateUrl: 'js/modules/setting/index.html', moduleUrl: 'setting/index.js', tooltip: 'Setting' },
+                    { iconClass: 'ui-icon ui-icon-info', id: 'help', templateUrl: 'html/help.html', tooltip: 'Help' }
+                ],
+                onLoadTemplate: function (menuObj, $panelEl) {
+                    if (menuObj.moduleUrl) {
+                        $$.dynamicImport(menuObj.moduleUrl).then(function (result) {
+                            result.default($panelEl);
+                        });
+                    }
+                },
+                beforeResize: function (e, ui) {
+                    horizentalTabsContainer.addClass('loading');
+                },
+                onResize: function (e, ui, obj) {
+                    var tabListWidth = obj.tabListWidth, panelWidth = obj.panelWidth;
+                    horizentalTabsContainer.css('right', tabListWidth + panelWidth + 4 + 'px').removeClass('loading');
+                },
+                onOpen: function (obj) {
+                    horizentalTabsContainer.css('right', obj.tabListWidth + obj.panelWidth + 4 + 'px');
+                },
+                onClose: function (obj) {
+                    horizentalTabsContainer.css('right', obj.tabListWidth + 'px');
+                }
+            }).sideMenu('select', 'menu');
+            $('#horizentalTabs').tabAdapter({
+                dir: 'rtl',//optional
+                onClose: (function () {
+                    var treeEl;
+                    return function (e, tabId) {
+                        treeEl = treeEl || $('#sideMenuTree');
+                        treeEl.jstree('deselect_node', tabId);
+                    }
+                })()
+            });
+        })();
     </script>
 </body>
 

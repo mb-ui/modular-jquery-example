@@ -150,9 +150,8 @@ function createTree(dataTree) {
         }
     });
 }
-export default function ({ panelElement: pEl }) {
-    api.getResources(['js/modules/treeMenu/index.html', 'json/sampleTreeMenuData.json']).done(([template, data]) => {
-        pEl.empty().append(template);
+export default function (panelElement) {
+    api.getResources(['json/sampleTreeMenuData.json']).done(([data]) => {
         createTree(data);
     });
 }

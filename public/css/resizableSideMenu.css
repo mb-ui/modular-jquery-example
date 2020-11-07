@@ -54,6 +54,7 @@
     position: absolute;
     top     : 0px;
     bottom  : 0px;
+    z-index : -1;
 }
 
 .sideMenu-resizerContainer.ltr {
@@ -62,6 +63,17 @@
 
 .sideMenu-resizerContainer.rtl {
     left: 0px !important;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////// */
+.sideMenu-panel {
+    position  : absolute;
+    top       : 3px;
+    right     : 3px;
+    left      : 3px;
+    bottom    : 3px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* ///////////////////////////////////////////////////////////////////////////// */
@@ -82,6 +94,24 @@
 }
 
 /* ///////////////////////////////////////////////////////////////////////////// */
+#horizentalMenuContainer {
+    top             : 1px;
+    bottom          : 2px;
+    position        : absolute;
+    background-image: none;
+}
+
+#horizentalMenuContainer.rtl {
+    left : 0px;
+    right: auto;
+}
+
+#horizentalMenuContainer.ltr {
+    left : auto;
+    right: 0px;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////// */
 
 
 
@@ -90,10 +120,10 @@
 
 
 
-
-
-.sideMenuIcon {
-    cursor: pointer;
+.sideMenu-tab {
+    cursor    : pointer;
+    text-align: center;
+    padding   : 5px;
 }
 
 #sideMenu-tabList>div {
@@ -103,16 +133,6 @@
     border-top  : none !important;
     border-left : none !important;
     border-right: none !important;
-}
-
-#horizentalMenuContainer {
-    top             : 0px;
-    bottom          : 2px;
-    /*height        :calc(100% - 37px);*/
-    position        : absolute;
-    right           : 344px;
-    background-image: none;
-    left            : 0px;
 }
 
 #horizentalMenuContainerInner {
@@ -156,7 +176,7 @@
 }
 
 #horizentalMenuContainer.loading,
-#sideMenu-panelList.loading {
+.sideMenu-panelList.loading {
     cursor          : wait;
     filter          : blur(4px);
     background-image: none;
