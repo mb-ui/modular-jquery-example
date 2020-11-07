@@ -1,8 +1,8 @@
 ﻿{
   "data": [
     {
-      "title": "عملیات",
-      "tooltip": "عملیات",
+      "title": "mock folder",
+      "tooltip": "mock folder",
       "id": "1",
       "cssIconClass": "",
       "type": "folder",
@@ -10,56 +10,56 @@
       "parentId": ""
     },
     {
-      "title": "استعلام اقساط",
-      "tooltip": "استعلام اقساط",
+      "title": "mock tab 1",
+      "tooltip": "mock tab 1",
       "cssIconClass": "",
       "type": "tab",
-      "jsModulePath": "callInstallment/index.js",
+      "jsModulePath": "mockTab1/index.js",
       "id": "2",
       "parentId": "1"
     },
     {
-      "title": "پرداخت اقساط",
-      "tooltip": "پرداخت اقساط",
+      "title": "mock tab 2",
+      "tooltip": "mock tab 2",
       "cssIconClass": "",
       "type": "tab",
-      "jsModulePath": "registerInstallment/index.js",
+      "jsModulePath": "mockTab2/index.js",
       "id": "3",
       "parentId": "1"
     },
     {
-      "title": "ماشین ها",
-      "tooltip": "ماشین ها",
+      "title": "mock tab 3",
+      "tooltip": "mock tab 3",
       "cssIconClass": "",
       "type": "tab",
-      "jsModulePath": "car/index.js",
-      "id": "4",
-      "parentId": ""
-    },
-    {
-      "title": "کاربران",
-      "tooltip": "کاربران",
-      "cssIconClass": "",
-      "type": "tab",
-      "jsModulePath": "user/index.js",
+      "jsModulePath": "mockTab3/index.js",
       "id": "5",
       "parentId": "1"
     },
     {
-      "title": "2ثبت نام",
-      "tooltip": "2ثبت نام",
+      "title": "mock tab 4 includes data grid",
+      "tooltip": "mock tab 4 includes data grid",
+      "cssIconClass": "",
+      "type": "tab",
+      "jsModulePath": "mockTab4IncludesDataGrid/index.js",
+      "id": "4",
+      "parentId": ""
+    },
+    {
+      "title": "mock dialog",
+      "tooltip": "mock dialog",
       "cssIconClass": "",
       "type": "dialog",
-      "jsModulePath": "user/createDialog/index.js",
+      "jsModulePath": "mockTab4IncludesDataGrid/createDialog/index.js",
       "id": "7",
       "parentId": "1"
     },
     {
-      "title": "ثبت نام",
-      "tooltip": "ثبت نام",
+      "title": "default selected mock tab",
+      "tooltip": "default selected mock tab",
       "cssIconClass": "",
-      "type": "dialog",
-      "jsModulePath": "user/createDialog/index.js",
+      "type": "tab",
+      "jsModulePath": "defaultSelectedMockTab/index.js",
       "id": "6",
       "parentId": ""
     }

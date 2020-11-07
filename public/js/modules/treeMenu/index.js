@@ -10,7 +10,7 @@ function createTree(dataTree) {
             },
             data: (function () {
                 var rootID = "023BE4D3-929B-45D6-AA14-E71899049EB9", data = [{
-                    text: "منوها",
+                    text: "Menu",
                     id: rootID,
                     parent: "#",
                     icon: "ui-icon ui-icon-folder-open",

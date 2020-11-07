@@ -2,7 +2,7 @@
 export default function ({ e, $gridEl }) {
     $('<div>').dialogAdapter({
         extendedSetting: {
-            url: 'js/modules/user/createDialog/index.html',
+            url: 'js/modules/mockTab4IncludesDataGrid/createDialog/index.html',
             afterLoadTemplate: function ({ $dialogEl }) {
                 accessor.init($dialogEl);
             }
