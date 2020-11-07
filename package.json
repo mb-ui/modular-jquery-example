@@ -19,7 +19,8 @@
     "systemJS",
     "tab",
     "tree",
-    "framework"
+    "framework",
+    "Example"
   ],
   "license": "MIT",
   "bugs": {
