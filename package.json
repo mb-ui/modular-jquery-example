@@ -6,7 +6,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mb-ui/jquery-tree-tabs.git"
+    "url": "git+https://github.com/mb-ui/modular-jquery-example.git"
   },
   "author": {
     "name": "Mohsen Biglari",
@@ -24,9 +24,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mb-ui/jquery-tree-tabs/issues"
+    "url": "https://github.com/mb-ui/modular-jquery-example/issues"
   },
-  "homepage": "https://github.com/mb-ui/jquery-tree-tabs#readme",
+  "homepage": "https://github.com/mb-ui/modular-jquery-example#readme",
   "dependencies": {
     "express": "^4.17.1"
   }
