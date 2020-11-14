@@ -1,6 +1,6 @@
 {
-  "name": "jquery-tree-tabs",
-  "title": "jquery-tree-tabs",
+  "name": "modular-jquery-example",
+  "title": "modular-jquery-example",
   "version": "1.0.0",
   "description": "A Simple Single Page Application Framework with systemJS and jquery",
   "main": "index.js",
