@@ -4,7 +4,7 @@ import search from './topPanelSearch/index.js';
 import createDialog from './createDialog/index.js';
 import api from '../shared/api/index.js';
 export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
-    return api.getResources(['js/modules/mockTab4IncludesDataGrid/index.html', 'js/modules/mockTab4IncludesDataGrid/topPanelsearch/index.html'])
+    return api.getResources(['js/modules/mockTab4WithDataGrid/index.html', 'js/modules/mockTab4WithDataGrid/topPanelsearch/index.html'])
         .then(function ([indexHtml, searchHtml]) {
             pEl.empty().append(searchHtml).append(indexHtml);
             const $gridEl = pEl.findByCode('grid');

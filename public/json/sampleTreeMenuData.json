@@ -37,11 +37,11 @@
       "parentId": "1"
     },
     {
-      "title": "mock tab 4 includes data grid",
-      "tooltip": "mock tab 4 includes data grid",
+      "title": "mock tab 4 with data grid",
+      "tooltip": "mock tab 4 with data grid",
       "cssIconClass": "",
       "type": "tab",
-      "jsModulePath": "mockTab4IncludesDataGrid/index.js",
+      "jsModulePath": "mockTab4WithDataGrid/index.js",
       "id": "4",
       "parentId": ""
     },
@@ -50,7 +50,7 @@
       "tooltip": "mock dialog",
       "cssIconClass": "",
       "type": "dialog",
-      "jsModulePath": "mockTab4IncludesDataGrid/createDialog/index.js",
+      "jsModulePath": "mockTab4WithDataGrid/createDialog/index.js",
       "id": "7",
       "parentId": "1"
     },
