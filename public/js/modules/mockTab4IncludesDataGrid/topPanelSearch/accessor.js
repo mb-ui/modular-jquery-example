@@ -24,6 +24,7 @@
         });
         this.PhoneNumber.multipleSelectAdapter({
             filter: true,
+            dir: 'rtl',
             multiple: true,
             data: [
                 { text: 'موبایل ۱', value: 1 },

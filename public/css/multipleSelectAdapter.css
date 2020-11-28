@@ -1,4 +1,18 @@
-﻿button.ms-choice{
-    direction:rtl;
-    text-align:right;
+﻿.multipleSelectAdapter-rtl+.ms-parent>button.ms-choice {
+    direction : rtl;
+    text-align: right;
+}
+
+.multipleSelectAdapter-rtl+.ms-parent li.multiple>label>span,
+.multipleSelectAdapter-rtl+.ms-parent li.ms-select-all>label>input[data-name="selectAll"]+span {
+    margin-right: 20px;
+}
+
+.multipleSelectAdapter-rtl+.ms-parent .ms-drop ul>li.multiple {
+    width: 100% !important;
+}
+
+.multipleSelectAdapter-rtl+.ms-parent .ms-drop input[type="radio"],
+.multipleSelectAdapter-rtl+.ms-parent .ms-drop input[type="checkbox"] {
+    right: 0px;
 }

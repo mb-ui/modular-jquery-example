@@ -37,9 +37,10 @@
                     switch (methodName) {
                         case 'SETFADATE':
                             var arr = arg[1].split('/');
+                            arr.length === 1 && (arr = arg[1].split('-'));
                             return this.calendarsPicker('setDate', _calendar.newDate(parseInt(arr[0]), parseInt(arr[1]), parseInt(arr[2])));
                         default:
-                            return this.calendarsPicker(methodName,arg[1]);
+                            return this.calendarsPicker(methodName, arg[1]);
                     }
                 default:
                     return this.calendarsPicker.apply(this, arg);

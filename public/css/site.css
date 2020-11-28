@@ -62,21 +62,3 @@ input {
 .dpk-button>span {
     margin-left: 5px;
 }
-
-
-/*li.multiple >label>span{
-    float:left;
-}*/
-.ms-drop ul>li.multiple {
-    width: 100% !important;
-}
-
-.ms-drop input[type="radio"],
-.ms-drop input[type="checkbox"] {
-    right: 0px;
-}
-
-li.multiple>label>span,
-li.ms-select-all>label>input[data-name="selectAll"]+span {
-    margin-right: 20px;
-}
