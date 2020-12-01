@@ -38,7 +38,7 @@
         return {
             Country: this.Country.val(),
             Capital: this.Capital.val(),
-            FromDate: this.FromDate.calendarAdapter('getEnDate'),
+            FromDate: this.FromDate.calendarAdapter('getJSDate'),
             Sex: this.Sex.multipleSelectAdapter('getSelects', 'value'),
             PhoneNumber: this.PhoneNumber.multipleSelectAdapter('getSelects', 'value')
         };
@@ -46,7 +46,7 @@
     setValues(obj) {
         this.Country.val(obj.Country);
         this.PhoneNumber.multipleSelectAdapter('setSelects', obj.PhoneNumber);
-        this.FromDate.calendarAdapter('setFaDate', obj.FromDateString);
+        this.FromDate.calendarAdapter('setDate', obj.FromDateString);
     }
     getOperations() {
         return {

@@ -4,9 +4,9 @@
    Available under the MIT (http://keith-wood.name/licence.html) license. 
    Please attribute the author if you use it. */
 
-(function($) { // Hide scope, no $ conflict
+(function ($) { // Hide scope, no $ conflict
 	'use strict';
-	
+
 	/** Implementation of the Persian or Jalali calendar.
 		Based on code from <a href="http://www.iranchamber.com/calendar/converter/iranian_calendar_converter.php">http://www.iranchamber.com/calendar/converter/iranian_calendar_converter.php</a>.
 		See also <a href="http://en.wikipedia.org/wiki/Iranian_calendar">http://en.wikipedia.org/wiki/Iranian_calendar</a>.
@@ -58,18 +58,31 @@
 			@property {boolean} isRTL <code>true</code> if this localisation reads right-to-left. */
 		regionalOptions: { // Localisations
 			'': {
+				// name: 'Persian',
+				// epochs: ['BP', 'AP'],
+				// monthNames: ['Farvardin', 'Ordibehesht', 'Khordad', 'Tir', 'Mordad', 'Shahrivar',
+				// 'Mehr', 'Aban', 'Azar', 'Day', 'Bahman', 'Esfand'],
+				// monthNamesShort: ['Far', 'Ord', 'Kho', 'Tir', 'Mor', 'Sha', 'Meh', 'Aba', 'Aza', 'Day', 'Bah', 'Esf'],
+				// dayNames: ['Yekshanbe', 'Doshanbe', 'Seshanbe', 'Chaharshanbe', 'Panjshanbe', 'Jom\'e', 'Shanbe'],
+				// dayNamesShort: ['Yek', 'Do', 'Se', 'Chæ', 'Panj', 'Jom', 'Sha'],
+				// dayNamesMin: ['Ye','Do','Se','Ch','Pa','Jo','Sh'],
+				// digits: null,
+				// dateFormat: 'yyyy/mm/dd',
+				// firstDay: 6,
+				// isRTL: false
 				name: 'Persian',
 				epochs: ['BP', 'AP'],
-				monthNames: ['Farvardin', 'Ordibehesht', 'Khordad', 'Tir', 'Mordad', 'Shahrivar',
-				'Mehr', 'Aban', 'Azar', 'Day', 'Bahman', 'Esfand'],
-				monthNamesShort: ['Far', 'Ord', 'Kho', 'Tir', 'Mor', 'Sha', 'Meh', 'Aba', 'Aza', 'Day', 'Bah', 'Esf'],
-				dayNames: ['Yekshanbe', 'Doshanbe', 'Seshanbe', 'Chaharshanbe', 'Panjshanbe', 'Jom\'e', 'Shanbe'],
-				dayNamesShort: ['Yek', 'Do', 'Se', 'Chæ', 'Panj', 'Jom', 'Sha'],
-				dayNamesMin: ['Ye','Do','Se','Ch','Pa','Jo','Sh'],
-				digits: null,
+				monthNames: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+					'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
+				monthNamesShort: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور',
+					'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'],
+				dayNames: ['یک‌شنبه', 'د‌وشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنج‌شنبه', 'جمعه', 'شنبه'],
+				dayNamesShort: ['یک', 'دو', 'سه', 'چهار', 'پنج', 'جمعه', 'شنبه'],
+				dayNamesMin: ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'],
+				digits: $.calendars.substituteDigits(['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹']),
 				dateFormat: 'yyyy/mm/dd',
 				firstDay: 6,
-				isRTL: false
+				isRTL: true
 			}
 		},
 
@@ -78,7 +91,7 @@
 			@param {CDate|number} year The date to examine or the year to examine.
 			@return {boolean} <code>true</code> if this is a leap year, <code>false</code> if not.
 			@throws Error if an invalid year or a different calendar used. */
-		leapYear: function(year) {
+		leapYear: function (year) {
 			var date = this._validate(year, this.minMonth, this.minDay, $.calendars.local.invalidYear);
 			return (((((date.year() - (date.year() > 0 ? 474 : 473)) % 2820) +
 				474 + 38) * 682) % 2816) < 682;
@@ -91,7 +104,7 @@
 			@param {number} [day] The day to examine (if only <code>year</code> specified above).
 			@return {number} The week of the year.
 			@throws Error if an invalid date or a different calendar used. */
-		weekOfYear: function(year, month, day) {
+		weekOfYear: function (year, month, day) {
 			// Find Saturday of this week starting on Saturday
 			var checkDate = this.newDate(year, month, day);
 			checkDate.add(-((checkDate.dayOfWeek() + 1) % 7), 'd');
@@ -104,7 +117,7 @@
 			@param {number} [month] The month (if only <code>year</code> specified above).
 			@return {number} The number of days in this month.
 			@throws Error if an invalid month/year or a different calendar used. */
-		daysInMonth: function(year, month) {
+		daysInMonth: function (year, month) {
 			var date = this._validate(year, month, this.minDay, $.calendars.local.invalidMonth);
 			return this.daysPerMonth[date.month() - 1] +
 				(date.month() === 12 && this.leapYear(date.year()) ? 1 : 0);
@@ -117,7 +130,7 @@
 			@param {number} [day] The day to examine (if only <code>year</code> specified above).
 			@return {boolean} <code>true</code> if a week day, <code>false</code> if not.
 			@throws Error if an invalid date or a different calendar used. */
-		weekDay: function(year, month, day) {
+		weekDay: function (year, month, day) {
 			return this.dayOfWeek(year, month, day) !== 5;
 		},
 
@@ -129,7 +142,7 @@
 			@param {number} [day] The day to convert (if only <code>year</code> specified above).
 			@return {number} The equivalent Julian date.
 			@throws Error if an invalid date or a different calendar used. */
-		toJD: function(year, month, day) {
+		toJD: function (year, month, day) {
 			var date = this._validate(year, month, day, $.calendars.local.invalidDate);
 			year = date.year();
 			month = date.month();
@@ -145,7 +158,7 @@
 			@memberof PersianCalendar
 			@param {number} jd The Julian date to convert.
 			@return {CDate} The equivalent date. */
-		fromJD: function(jd) {
+		fromJD: function (jd) {
 			jd = Math.floor(jd) + 0.5;
 			var depoch = jd - this.toJD(475, 1, 1);
 			var cycle = Math.floor(depoch / 1029983);

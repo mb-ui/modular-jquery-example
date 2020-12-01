@@ -16,7 +16,7 @@
         this.Developed = $rootElement.findByCode('Developed');
         this.FromTime = $rootElement.findByCode('FromTime');
         this.ToTime = $rootElement.findByCode('ToTime');
-        
+
         this.Date.calendarAdapter();
         this.FromTime.timepickerAdapter({});
         this.ToTime.timepickerAdapter({}).timepickerAdapter('setValue', '16:05');
@@ -25,7 +25,7 @@
         return {
             Country: this.Country.val(),
             Capital: this.Capital.val(),
-            Date: this.Date.calendarAdapter('getEnDate'),
+            Date: this.Date.calendarAdapter('getJSDate'),
             Code: this.Code.val(),
             Developed: this.Developed.val(),
             FromTime: this.FromTime.timepickerAdapter('getValue'),
@@ -37,7 +37,7 @@
         this.Capital.val(obj.Capital);
         this.Code.val(obj.Code);
         this.Developed.val(obj.Developed);
-        this.Date.calendarAdapter('setDate', $.calendars.instance('persian').newDate(1399, 6, 12));
+        this.Date.calendarAdapter('setDate', obj.Date);
         this.FromTime.timepickerAdapter('setValue', obj.FromTime);
         this.ToTime.timepickerAdapter('setValue', obj.ToTime);
     }
