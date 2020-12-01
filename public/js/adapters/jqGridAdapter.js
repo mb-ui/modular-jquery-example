@@ -125,7 +125,7 @@
                         return this.jqGrid(arg[0]);
                     }
                 case 2:
-                    if (arg[0].toUpperCase() === 'APPLYSEARCH') {
+                    if (arg[0].toUpperCase() === 'APPLYEXTERNALSEARCH') {
                         (function (param, $gridEl) {
                             var data = param.data, _searchOperation = param.operations, filters = { groupOp: 'AND', rules: [] }, p = $gridEl[0].p, topFilter = [], oldFilters = p.postData.filters;
                             p.search = true;

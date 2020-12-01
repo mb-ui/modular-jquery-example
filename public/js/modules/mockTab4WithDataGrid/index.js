@@ -69,7 +69,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 //    showPrompts: true
                 //}).validationEngine();
                 var result = searchAccessor.validate();
-                $gridEl.jqGridAdapter('applySearch', { data: searchAccessor.getValues(), operations: searchAccessor.getOperations() });
+                $gridEl.jqGridAdapter('applyExternalSearch', { data: searchAccessor.getValues(), operations: searchAccessor.getOperations() });
             });
         });
 }
