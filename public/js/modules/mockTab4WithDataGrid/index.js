@@ -28,6 +28,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 datatype: 'local',
                 height: '200',
                 multiselect: true,
+                direction: 'rtl',
                 colNames: ['Country', 'Country Code', 'Developed', 'Capital', 'Date'],
                 colModel: [{
                     name: 'Country',

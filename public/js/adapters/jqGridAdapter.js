@@ -60,7 +60,6 @@
                         }, options, {
                             gridview: true,
                             viewrecords: true,
-                            direction: 'rtl',
                             sortable: true,
                             rownumbers: true
                         })).jqGrid('filterToolbar', {

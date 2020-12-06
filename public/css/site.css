@@ -9,15 +9,8 @@ body {
     position: fixed;
 }
 
-@font-face {
-    font-family: IRANSansWeb;
-    font-style : normal;
-    font-weight: 100;
-    src        : url(../fonts/IRANSansWeb/IRANSansWeb\(FaNum\)_Light.woff2);
-}
-
 html body * {
-    font-family: IRANSansWeb !important;
+    font-family: tahoma !important;
 }
 
 #container {
