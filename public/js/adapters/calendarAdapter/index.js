@@ -13,7 +13,8 @@
                         var param = arg[0].toUpperCase();
                         switch (param) {
                             case 'GETJSDATE':
-                                return this.calendarsPicker('getDate')[0].toJSDate();
+                                var _dates = this.calendarsPicker('getDate');
+                                return _dates.length ? _dates[0].toJSDate() : null;
                             default:
                                 return this.calendarsPicker(arg[0]);
                         }
