@@ -12,13 +12,13 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 customSetting: {
                     topToolbarBtns: {
                         '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-plus"></span>جدید</button>': createDialog
-                        , '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-print"></span>چاپ</button>': function ({ e, $gridEl }) { }
+                        , '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-print"></span>چاپ</button>': function ({ e, $gridEl }) { alert('action = print'); }
                     },
                     inlineBtns: {
                         width: 80,
                         btns: {
-                            '<span class="ui-icon ui-icon-pencil"></span>': function ({ e, rowData, $gridEl }) { }
-                            , '<span class="ui-icon ui-icon-trash"></span>': function ({ e, rowData, $gridEl }) { }
+                            '<span class="ui-icon ui-icon-pencil"></span>': function ({ e, rowData, $gridEl }) { alert(`action = update , rowId = ${rowData.id}`); }
+                            , '<span class="ui-icon ui-icon-trash"></span>': function ({ e, rowData, $gridEl }) { alert(`action = del , rowId = ${rowData.id}`); }
                         }
                     }
                 },
@@ -29,10 +29,12 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 height: '200',
                 multiselect: true,
                 direction: 'rtl',
-                colNames: ['Country', 'Country Code', 'Developed', 'Capital', 'Date'],
+                colNames: ['id', 'Country', 'Country Code', 'Developed', 'Capital', 'Date'],
                 colModel: [{
+                    name: 'id',
+                    hidden: true
+                }, {
                     name: 'Country',
-                    key: true,
                     width: 200
                 }, {
                     name: 'Code',
