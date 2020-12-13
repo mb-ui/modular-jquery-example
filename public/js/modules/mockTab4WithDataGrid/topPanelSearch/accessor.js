@@ -8,12 +8,12 @@
         this.form = '';
     }
     init($rootEl) {
-        this.Country = $rootEl.findByCode('Country');
-        this.Capital = $rootEl.findByCode('Capital');
-        this.PhoneNumber = $rootEl.findByCode('PhoneNumber');
-        this.FromDate = $rootEl.findByCode('FromDate');
-        this.Sex = $rootEl.findByCode('Sex');
-        this.form = $rootEl.findByCode('form');
+        this.Country = $rootEl._findByCode('Country');
+        this.Capital = $rootEl._findByCode('Capital');
+        this.PhoneNumber = $rootEl._findByCode('PhoneNumber');
+        this.FromDate = $rootEl._findByCode('FromDate');
+        this.Sex = $rootEl._findByCode('Sex');
+        this.form = $rootEl._findByCode('form');
         this.form.validationAdapter();
         this.FromDate.calendarAdapter();
         this.Sex.multipleSelectAdapter({

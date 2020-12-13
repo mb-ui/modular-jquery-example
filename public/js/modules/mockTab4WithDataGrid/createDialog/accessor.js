@@ -9,13 +9,13 @@
         this.ToTime = '';
     }
     init($rootElement) {
-        this.Country = $rootElement.findByCode('Country');
-        this.Capital = $rootElement.findByCode('Capital');
-        this.Code = $rootElement.findByCode('Code');
-        this.Date = $rootElement.findByCode('Date');
-        this.Developed = $rootElement.findByCode('Developed');
-        this.FromTime = $rootElement.findByCode('FromTime');
-        this.ToTime = $rootElement.findByCode('ToTime');
+        this.Country = $rootElement._findByCode('Country');
+        this.Capital = $rootElement._findByCode('Capital');
+        this.Code = $rootElement._findByCode('Code');
+        this.Date = $rootElement._findByCode('Date');
+        this.Developed = $rootElement._findByCode('Developed');
+        this.FromTime = $rootElement._findByCode('FromTime');
+        this.ToTime = $rootElement._findByCode('ToTime');
 
         this.Date.calendarAdapter();
         this.FromTime.timepickerAdapter({});

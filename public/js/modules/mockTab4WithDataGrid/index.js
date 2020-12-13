@@ -7,8 +7,8 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
     return api.getResources(['js/modules/mockTab4WithDataGrid/index.html', 'js/modules/mockTab4WithDataGrid/topPanelsearch/index.html'])
         .then(function ([indexHtml, searchHtml]) {
             pEl.empty().append(searchHtml).append(indexHtml);
-            const $gridEl = pEl.findByCode('grid');
-            $gridEl.jqGridAdapter({
+            const $gridEl = pEl._findByCode('grid');
+            $gridEl.gridAdapter({
                 customSetting: {
                     topToolbarBtns: {
                         '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-plus"></span>جدید</button>': createDialog
@@ -51,7 +51,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                     name: 'Date',
                     width: 200
                 }],
-                pager: pEl.findByCode('grid_pager').attr('id', `${containerID}grid_pager`).attr('id'),
+                pager: pEl._findByCode('grid_pager').attr('id', `${containerID}grid_pager`).attr('id'),
                 sortname: 'Country',
                 caption: treeNodeObj.text
             });
@@ -62,7 +62,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 PhoneNumber: [1, 3],
                 FromDateString: '1399/6/13'
             });
-            pEl.findByCode('searchSubmit').click(function (e) {
+            pEl._findByCode('searchSubmit').click(function (e) {
                 //searchSubmitClick({ searchAccessor, $gridEl });
 
                 //form.validationEngine('attach', {
@@ -72,7 +72,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 //    showPrompts: true
                 //}).validationEngine();
                 var result = searchAccessor.validate();
-                $gridEl.jqGridAdapter('applyExternalSearch', { data: searchAccessor.getValues(), operations: searchAccessor.getOperations() });
+                $gridEl.gridAdapter('applyExternalSearch', { data: searchAccessor.getValues(), operations: searchAccessor.getOperations() });
             });
         });
 }

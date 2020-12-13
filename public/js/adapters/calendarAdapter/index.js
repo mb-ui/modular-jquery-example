@@ -1,32 +1,30 @@
 ﻿(function ($) {
-    $.fn.extend({
-        calendarAdapter: function () {
-            var arg = arguments, argL = arg.length;
-            switch (argL) {
-                case 0:
-                    return this.calendarsPicker($.fn.calendarAdapter.getDefaultOptions());
-                case 1:
-                    if (Object.prototype.toString.call(arg[0]).toUpperCase() === '[OBJECT OBJECT]') {
-                        return this.calendarsPicker($.extend($.fn.calendarAdapter.getDefaultOptions(), arg[0] || {}));
+    var _calendarAdapter = function () {
+        var arg = arguments, argL = arg.length;
+        switch (argL) {
+            case 0:
+                return this.calendarsPicker(_calendarAdapter._getDefaultOptions());
+            case 1:
+                if (Object.prototype.toString.call(arg[0]).toUpperCase() === '[OBJECT OBJECT]') {
+                    return this.calendarsPicker($.extend(_calendarAdapter._getDefaultOptions(), arg[0] || {}));
+                }
+                else {
+                    var param = arg[0].toUpperCase();
+                    switch (param) {
+                        case 'GETJSDATE':
+                            var _dates = this.calendarsPicker('getDate');
+                            return _dates.length ? _dates[0].toJSDate() : null;
+                        default:
+                            return this.calendarsPicker(arg[0]);
                     }
-                    else {
-                        var param = arg[0].toUpperCase();
-                        switch (param) {
-                            case 'GETJSDATE':
-                                var _dates = this.calendarsPicker('getDate');
-                                return _dates.length ? _dates[0].toJSDate() : null;
-                            default:
-                                return this.calendarsPicker(arg[0]);
-                        }
-                    }
-                default:
-                    return this.calendarsPicker.apply(this, arg);
-            }
-
+                }
+            default:
+                return this.calendarsPicker.apply(this, arg);
         }
-    });
-    $.extend($.fn.calendarAdapter, {
-        getDefaultOptions: function () {
+
+    };
+    $.extend(_calendarAdapter, {
+        _getDefaultOptions: function () {
             return {
                 calendar: $.calendars.instance(),
                 renderer: $.calendarsPicker.themeRollerRenderer,
@@ -41,4 +39,5 @@
             };
         }
     });
+    $._createPlugin('calendarAdapter', _calendarAdapter);
 })(jQuery);
