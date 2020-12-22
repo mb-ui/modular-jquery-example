@@ -9,7 +9,7 @@ export default function ({ e, $gridEl }) {
             }
             , beforeLoadTemplate: function (param) { }
         },
-        title: 'کاربر جدید',
+        title: 'create dialog title',
         height: 700,
         width: '90%',
         buttons: {
