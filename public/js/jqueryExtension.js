@@ -2,13 +2,15 @@
     $.extend({
         _getResources: function (url) {
             url.constructor === Array || (url = [url]);
-            for (var i = 0, l = url.length; i < l; i++) {
+            $.each(url, function (i, value) {
+                var urlArray = value.split('.')
+                    , dataType = urlArray[urlArray.length - 1].includes('htm') ? 'html' : 'json';
                 url[i] = $.ajax({
-                    url: url[i],
+                    url: value,
                     type: 'get',
-                    dataType: 'html'
+                    dataType: dataType
                 });
-            }
+            });
             return $.when.apply(undefined, url).then(function () {
                 var arr = [];
                 if (arguments[0].constructor !== Array)
@@ -22,8 +24,9 @@
         _createPlugin: function (pluginName, fn) {
             var obj = {};
             obj[pluginName] = function () {
-                var arg = arguments;
-                return this.each(function () { return fn.apply($(this), arg); });
+                var arg = arguments, result = [];
+                this.each(function () { result.push(fn.apply($(this), arg)); });
+                return result.length > 1 ? result : (result[0] || null);
             };
             $.fn.extend(obj);
             $.each(fn, function (i, value) { i.charAt(0) === '_' || ($.fn[pluginName][i] = value); });

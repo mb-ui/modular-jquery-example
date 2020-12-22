@@ -93,7 +93,6 @@
                     containment: els.resizerContainer[0],
                     cursor: 'ew-resize',
                     start: function (event, ui) {
-                        els.panelList.addClass('loading');
                         data.beforeResize(event, ui);
                     }
                 });
@@ -104,7 +103,6 @@
                     drop: function (event, ui) {
                         var _panelWidth, _diff = ui.position.left - els.panelList[0].getBoundingClientRect().left;
                         _panelWidth = data.dir === 'rtl' ? els.panelList.width() + (-_diff) : _diff;
-                        els.panelList.removeClass('loading');
                         if (_panelWidth <= data.panelMinWidth) { $el.sideMenu('deselect').sideMenu('close'); return; }
                         $el.data({ panelWidth: _panelWidth });
                         els.panelList.width(_panelWidth);

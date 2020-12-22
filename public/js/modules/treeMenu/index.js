@@ -1,4 +1,4 @@
-import api from '../shared/api/index.js';
+import api from '../shared/index.js';
 let horizentalTabsEl;
 function createTree(dataTree) {
     horizentalTabsEl = horizentalTabsEl || $('#horizentalTabs');

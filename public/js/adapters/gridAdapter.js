@@ -48,7 +48,7 @@
                         if (value.name.trim() && ((value.search === undefined) || (value.search)))
                             value.hidden || (
                                 value.searchoptions = {
-                                    sopt: ['eq', 'bw', 'bn', 'cn', 'nc', 'ew', 'en']
+                                    sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge', 'bw', 'bn', 'in', 'ni', 'ew', 'en', 'cn', 'nc']
                                 }
                             );
                     });
@@ -125,17 +125,11 @@
             case 2:
                 if (arg[0].toUpperCase() === 'APPLYEXTERNALSEARCH') {
                     (function (param, $gridEl) {
-                        var data = param.data, _searchOperation = param.operations, filters = { groupOp: 'AND', rules: [] }, p = $gridEl[0].p, topFilter = [], oldFilters = p.postData.filters;
+                        var filters, p = $gridEl[0].p, oldFilters = p.postData.filters;
                         p.search = true;
-                        p.postData.filters && (filters = JSON.parse(p.postData.filters));
-                        $.each(data, function (i, value) {
-                            _searchOperation[i] || (_searchOperation[i] = 'cn');
-                            topFilter.push({ field: i, op: _searchOperation[i], data: value });
-                        });
-                        for (var i = 0, l = topFilter.length; i < l; i++)
-                            filters.rules.push(topFilter[i]);
-                        filters = JSON.stringify(filters);
-                        $.extend(p.postData, { filters: filters });
+                        filters = oldFilters ? JSON.parse(oldFilters) : { groupOp: 'AND', rules: [] };
+                        filters.rules = filters.rules.concat(param);
+                        $.extend(p.postData, { filters: JSON.stringify(filters) });
                         $gridEl.trigger("reloadGrid", [{ page: 1 }]);
                         p.postData.filters = oldFilters;
                     })(arg[1], this);

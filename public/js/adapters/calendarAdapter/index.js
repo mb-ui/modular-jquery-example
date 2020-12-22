@@ -11,6 +11,9 @@
                 else {
                     var param = arg[0].toUpperCase();
                     switch (param) {
+                        case 'GETMILLISECDATE':
+                            var _dates = this.calendarsPicker('getDate');
+                            return _dates.length ? Date.parse(_dates[0].toJSDate()) : null;
                         case 'GETJSDATE':
                             var _dates = this.calendarsPicker('getDate');
                             return _dates.length ? _dates[0].toJSDate() : null;

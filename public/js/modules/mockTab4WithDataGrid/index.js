@@ -1,69 +1,74 @@
-﻿import simpleLocalData from './simpleLocalData.js';
-import searchAccessor from './topPanelSearch/accessor.js';
-import search from './topPanelSearch/index.js';
-import createDialog from './createDialog/index.js';
-import api from '../shared/api/index.js';
+﻿import createBtn from './actions/createButton.js';
+import printBtn from './actions/printButton.js';
+import updateBtn from './actions/updateButton.js';
+import deleteBtn from './actions/deleteButton.js';
+import SearchFrom from './forms/externalSearch/index.js';
+import services from './services.js';
+import api from '../shared/index.js';
 export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
-    return api.getResources(['js/modules/mockTab4WithDataGrid/index.html', 'js/modules/mockTab4WithDataGrid/topPanelsearch/index.html'])
-        .then(function ([indexHtml, searchHtml]) {
-            pEl.empty().append(searchHtml).append(indexHtml);
-            const $gridEl = pEl._findByCode('grid');
+    return api.getResources(['js/modules/mockTab4WithDataGrid/index.html', 'js/modules/mockTab4WithDataGrid/forms/externalSearch/index.html'])
+        .then(function ([gridTemplate, exteranlSearchTemplate]) {
+            pEl.empty().append(exteranlSearchTemplate + gridTemplate);
+            const $gridEl = api.getElementByCody(pEl, 'grid');
             $gridEl.gridAdapter({
                 customSetting: {
                     topToolbarBtns: {
-                        '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-plus"></span>جدید</button>': createDialog
-                        , '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-print"></span>چاپ</button>': function ({ e, $gridEl }) { alert('action = print'); }
+                        '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-plus"></span>create</button>': createBtn
+                        , '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-print"></span>print</button>': printBtn
                     },
                     inlineBtns: {
                         width: 80,
                         btns: {
-                            '<span class="ui-icon ui-icon-pencil"></span>': function ({ e, rowData, $gridEl }) { alert(`action = update , rowId = ${rowData.id}`); }
-                            , '<span class="ui-icon ui-icon-trash"></span>': function ({ e, rowData, $gridEl }) { alert(`action = del , rowId = ${rowData.id}`); }
+                            '<span class="ui-icon ui-icon-pencil"></span>': updateBtn
+                            , '<span class="ui-icon ui-icon-trash"></span>': deleteBtn
                         }
                     }
                 },
                 //url: location.href + 'Home/GetUserData',
                 loadonce: true,
-                data: simpleLocalData(),
+                data: services.getLocalDataGrid(),
                 datatype: 'local',
-                height: '200',
+                height: '320',
                 multiselect: true,
                 direction: 'rtl',
-                colNames: ['id', 'Country', 'Country Code', 'Developed', 'Capital', 'Date'],
+                colNames: ['ID', 'Hidden Day', 'Day', 'Client', 'Amount', 'Tax', 'Total', 'Notes'],
                 colModel: [{
                     name: 'id',
                     hidden: true
                 }, {
-                    name: 'Country',
+                    name: 'day',
+                    hidden: true
+                }, {
+                    name: 'dayString',
+                    width: 200,
+                }, {
+                    name: 'client',
+                }, {
+                    name: 'amount',
                     width: 200
                 }, {
-                    name: 'Code',
-                }, {
-                    name: 'Developed',
-                    formatter: function () {
-                        return "<span>this is an image</span>";
-                    },
+                    name: 'tax',
                     width: 200
                 }, {
-                    name: 'Capital',
+                    name: 'total',
                     width: 200
                 }, {
-                    name: 'Date',
-                    width: 200
+                    name: 'notes',
+                    width: 400
                 }],
-                pager: pEl._findByCode('grid_pager').attr('id', `${containerID}grid_pager`).attr('id'),
+                pager: api.getElementByCody(pEl, 'grid_pager').attr('id', `${containerID}grid_pager`).attr('id'),
                 sortname: 'Country',
-                caption: treeNodeObj.text
+                caption: 'data grid'
             });
-            searchAccessor.init(pEl);
-            searchAccessor.setValues({
+            const searchFrom = new SearchFrom(pEl);
+            searchFrom.setValues({
                 Capital: '',
                 Country: '',
                 PhoneNumber: [1, 3],
                 FromDateString: '1399/6/13'
             });
-            pEl._findByCode('searchSubmit').click(function (e) {
-                //searchSubmitClick({ searchAccessor, $gridEl });
+            api.getElementByCody(pEl, 'searchSubmit').click(function (e) {
+                //searchSubmitClick({ searchFrom, $gridEl });
 
                 //form.validationEngine('attach', {
                 //    validationEventTrigger: "blur",
@@ -71,8 +76,8 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 //    focusFirstField: true,
                 //    showPrompts: true
                 //}).validationEngine();
-                var result = searchAccessor.validate();
-                $gridEl.gridAdapter('applyExternalSearch', { data: searchAccessor.getValues(), operations: searchAccessor.getOperations() });
+                if (searchFrom.validate() === true)
+                    $gridEl.gridAdapter('applyExternalSearch', searchFrom.getGridFilters());
             });
         });
 }

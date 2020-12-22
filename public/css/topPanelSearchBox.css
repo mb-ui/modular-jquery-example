@@ -52,18 +52,7 @@
 }
 
 .topPanelSearchBox .searchBody {
-    padding      : 5px;
-    margin-bottom: 5px;
-    display      : inline-block;
-}
-
-.topPanelSearchBox.ui-widget.ui-widget-content:before {
-    content     : '';
-    position    : absolute;
-    bottom      : 42px;
-    left        : 70px;
-    right       : 70px;
-    height      : 1px;
-    border-top  : 1px solid;
-    border-color: inherit;
+    /* padding      : 5px;
+    margin-bottom: 5px; */
+    display: inline-block;
 }

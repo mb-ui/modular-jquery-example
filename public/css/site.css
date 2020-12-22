@@ -55,3 +55,8 @@ input {
 .dpk-button>span {
     margin-left: 5px;
 }
+
+.inputHeight {
+    height       : 28px;
+    border-radius: 5px;
+}

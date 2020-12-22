@@ -9,7 +9,7 @@
                 if (Object.prototype.toString.call(arg[0]).toUpperCase() === '[OBJECT OBJECT]') {
                     var op = $.extend({ filter: true, dir: 'ltr' }, $.fn.multipleSelect.localLang, arg[0]);
                     op.dir === 'rtl' && (this.hasClass('multipleSelectAdapter-rtl') || this.addClass('multipleSelectAdapter-rtl'));
-                    return this.multipleSelect(op);
+                    return this.addClass('multipleSelectAdapter').multipleSelect(op);
                 }
                 else
                     return this.multipleSelect(arg[0]);

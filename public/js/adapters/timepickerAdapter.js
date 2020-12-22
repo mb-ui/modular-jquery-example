@@ -1,5 +1,6 @@
 ﻿(function ($) {
     var _timepickerAdapter = function () {
+        debugger;
         var arg = arguments, argL = arg.length;
         switch (argL) {
             case 0:
@@ -9,9 +10,9 @@
                     var op = arg[0] || {};
                     op.change = op.change || function () { };
                     var onchange = op.change, options = $.extend({
-                        timeFormat: 'HH:mm',
+                        timeFormat: 'HH:MM',
                         interval: 60,
-                        dynamic: false,
+                        dynamic: true,
                         dropdown: false,
                         scrollbar: true
                     }, op);
@@ -20,6 +21,7 @@
                         var timepicker = $(this).timepicker();
                         timepicker.format && $(this).data('value', timepicker.format(time));
                     };
+                    debugger;
                     return this.timepicker(options);
                 }
                 else

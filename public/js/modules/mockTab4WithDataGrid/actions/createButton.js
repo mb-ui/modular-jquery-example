@@ -1,19 +1,20 @@
-﻿import accessor from './accessor.js'
+﻿import CreateForm from '../forms/create/index.js';
 export default function ({ e, $gridEl }) {
+    let form;
     $('<div>').dialogAdapter({
         extendedSetting: {
-            url: 'js/modules/mockTab4WithDataGrid/createDialog/index.html',
+            url: 'js/modules/mockTab4WithDataGrid/forms/create/index.html',
             afterLoadTemplate: function ({ $dialogEl }) {
-                accessor.init($dialogEl);
+                form = new CreateForm($dialogEl);
             }
             , beforeLoadTemplate: function (param) { }
         },
         title: 'کاربر جدید',
         height: 700,
-        width: 850,
+        width: '90%',
         buttons: {
-            'تایید': function () {
-                var data = accessor.getValues();
+            'ok': function () {
+                var data = form.getValues();
                 debugger;
                 // sending data to server
             }
