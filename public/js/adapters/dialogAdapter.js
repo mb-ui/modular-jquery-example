@@ -21,7 +21,7 @@
             case 1:
                 if (Object.prototype.toString.call(arg[0]).toUpperCase() === '[OBJECT OBJECT]') {
                     var options = arg[0], workingWithurl, ex = options.extendedSetting;
-                    (ex && typeof ex === 'object' && ex.url) && (workingWithurl = true);
+                    (ex && typeof ex === 'object' && ex.templateUrl) && (workingWithurl = true);
                     options.buttons = options.buttons || {};
                     if (typeof options.buttons !== 'object') { throw 'dialogAdapter "buttons" parameter must be type of object'; }
                     $.each(options.buttons, function (i, value) {
@@ -48,7 +48,7 @@
                     });
                     if (workingWithurl) {
                         setting.beforeLoadTemplate();
-                        $._getResources([ex.url]).then(setting.afterLoadTemplate);
+                        $._getResources([ex.templateUrl]).then(setting.afterLoadTemplate);
                     }
                     $('body').append(this);
                     return this.dialog(setting);

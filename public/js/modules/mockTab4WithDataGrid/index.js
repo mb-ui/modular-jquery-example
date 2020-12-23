@@ -10,6 +10,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
         .then(function ([gridTemplate, exteranlSearchTemplate]) {
             pEl.empty().append(exteranlSearchTemplate + gridTemplate);
             const $gridEl = api.getElementByCody(pEl, 'grid');
+            const searchFrom = new SearchFrom(pEl);
             $gridEl.gridAdapter({
                 customSetting: {
                     topToolbarBtns: {
@@ -60,22 +61,13 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 sortname: 'Country',
                 caption: 'data grid'
             });
-            const searchFrom = new SearchFrom(pEl);
-            searchFrom.setValues({
-                Capital: '',
-                Country: '',
-                PhoneNumber: [1, 3],
-                FromDateString: '1399/6/13'
-            });
+            // searchFrom.setValues({
+            //     Capital: '',
+            //     Country: '',
+            //     PhoneNumber: [1, 3],
+            //     FromDateString: '1399/6/13'
+            // });
             api.getElementByCody(pEl, 'searchSubmit').click(function (e) {
-                //searchSubmitClick({ searchFrom, $gridEl });
-
-                //form.validationEngine('attach', {
-                //    validationEventTrigger: "blur",
-                //    scroll: true,
-                //    focusFirstField: true,
-                //    showPrompts: true
-                //}).validationEngine();
                 if (searchFrom.validate() === true)
                     $gridEl.gridAdapter('applyExternalSearch', searchFrom.getGridFilters());
             });

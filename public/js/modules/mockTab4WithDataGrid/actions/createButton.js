@@ -4,7 +4,7 @@ export default function ({ e, $gridEl }) {
     let form;
     $('<div>').dialogAdapter({
         extendedSetting: {
-            url: 'js/modules/mockTab4WithDataGrid/forms/create/index.html',
+            templateUrl: 'js/modules/mockTab4WithDataGrid/forms/create/index.html',
             afterLoadTemplate: function ({ $dialogEl }) {
                 form = new CreateForm($dialogEl);
             }
@@ -17,13 +17,13 @@ export default function ({ e, $gridEl }) {
             'ok': function ({ $dialogEl }) {
                 if (form.validate() === true) {
                     const data = form.getValues();
+                    service.create(data);
                     let message = 'new data : ';
                     $.each(data, (prop, value) => {
                         message += `  ${prop}=${value},`;
                     });
-                    $dialogEl.dialogAdapter('close');
-                    service.create(data);
                     alert(message);
+                    $dialogEl.dialogAdapter('close');
                 }
             }
         }
