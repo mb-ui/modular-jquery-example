@@ -23,6 +23,7 @@ html body div.ui-widget-overlay.ui-front {
 }
 
 .dialogAdapter .ui-dialog-content {
-    height : auto !important;
-    padding: 2px;
+    height     : auto !important;
+    padding    : 2px;
+    padding-top: 17px;
 }

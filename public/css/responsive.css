@@ -28,6 +28,10 @@
     width: 200px;
 }
 
+form.responsiveForm {
+    overflow: visible;
+}
+
 .responsiveForm .col200>input,
 .responsiveForm .col200>select {
     width: 180px;

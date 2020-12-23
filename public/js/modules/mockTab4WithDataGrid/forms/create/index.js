@@ -13,17 +13,6 @@ class CreateForm extends FormValidation {
         this.day.calendarAdapter();
         service.getClientData().then(data => { this.client.multipleSelectAdapter({ data, dir: 'rtl' }); });
         service.getNotesData().then(data => { this.notes.multipleSelectAdapter({ data, dir: 'rtl' }); });
-        // this.phoneNumberEl.multipleSelectAdapter({
-        //     filter: true,
-        //     dir: 'rtl',
-        //     multiple: true,
-        //     data: [
-        //         { text: 'موبایل ۱', value: 1 },
-        //         { text: 'موبایل ۲', value: 2 },
-        //         { text: 'ثابت ۱', value: 3 },
-        //         { text: 'ثابت ۲', value: 4 }
-        //     ]
-        // });
     }
     getValues() {
         return {

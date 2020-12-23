@@ -41,5 +41,8 @@ export default {
             }
         });
         return data;
-    })())
+    })()),
+    create: data => {
+        //send data to the server.
+    }
 };
