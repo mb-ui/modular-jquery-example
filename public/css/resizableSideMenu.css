@@ -1,7 +1,7 @@
 ﻿.sideMenu-tabList {
     position        : absolute;
-    top             : 0px;
-    bottom          : 0px;
+    top             : 1px;
+    bottom          : 2px;
     background-image: none;
 }
 
@@ -38,8 +38,8 @@
 
 .sideMenu-resizer {
     position        : absolute;
-    top             : 0px;
-    bottom          : 0px;
+    top             : 1px;
+    bottom          : 2px;
     width           : 4px;
     cursor          : ew-resize !important;
     background-image: none;
@@ -87,8 +87,8 @@
 
 .sideMenu-panelList {
     position        : absolute;
-    top             : 0px;
-    bottom          : 0px;
+    top             : 1px;
+    bottom          : 2px;
     background-image: none;
     overflow        : hidden;
 }
