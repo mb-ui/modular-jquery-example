@@ -44,5 +44,8 @@ export default {
     })()),
     create: data => {
         //send data to the server.
+    },
+    delete: rowId => {
+        //send data to the server.
     }
 };
