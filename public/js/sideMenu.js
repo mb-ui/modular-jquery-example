@@ -94,6 +94,7 @@
                     cursor: 'ew-resize',
                     start: function (event, ui) {
                         data.beforeResize(event, ui);
+                        setTimeout(function () { data.beforeResizeAsync(event, ui); }, 5);
                     }
                 });
                 els.resizerContainer.droppable({
@@ -122,6 +123,7 @@
             onLoadTemplate: function (menuObj, $panelEl) { },
             beforeSelect: function (e, id) { return true },
             beforeResize: function (e, ui) { },
+            beforeResizeAsync: function (e, ui) { },
             onResize: function (e, ui, obj) { },
             onOpen: function (obj) { },
             onClose: function (obj) { },

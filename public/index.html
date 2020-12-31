@@ -80,8 +80,10 @@
     <script src="js/adapters/timepickerAdapter.js"></script>
     <script>
         (function () {
-            var horizentalTabsContainer = $('#horizentalMenuContainer');
-            $('#sideMenuContainer').sideMenu({
+            var sideMenuContainer = $('#sideMenuContainer'),
+                horizentalTabsContainer = $('#horizentalMenuContainer'),
+                sideMenuPanelListEl;
+            sideMenuContainer.sideMenu({
                 dir: 'rtl',//optional
                 tabListWidth: 40,//optional
                 panelWidth: 310,//optional
@@ -99,18 +101,20 @@
                         });
                     }
                 },
-                beforeResize: function (e, ui) {
-                    horizentalTabsContainer.addClass('loading');
+                beforeResizeAsync: function (e, ui) {
+                    if (!sideMenuPanelListEl)
+                        sideMenuPanelListEl = $('.sideMenu-panelList', sideMenuContainer).first();
+                    horizentalTabsContainer.add(sideMenuPanelListEl).addClass('loading');
                 },
                 onResize: function (e, ui, obj) {
                     var tabListWidth = obj.tabListWidth, panelWidth = obj.panelWidth;
-                    horizentalTabsContainer.css('right', tabListWidth + panelWidth + 4 + 'px').removeClass('loading');
+                    horizentalTabsContainer.css('right', tabListWidth + panelWidth + 4 + 'px').add(sideMenuPanelListEl).removeClass('loading');
                 },
                 onOpen: function (obj) {
                     horizentalTabsContainer.css('right', obj.tabListWidth + obj.panelWidth + 4 + 'px');
                 },
                 onClose: function (obj) {
-                    horizentalTabsContainer.css('right', obj.tabListWidth + 'px');
+                    horizentalTabsContainer.css('right', obj.tabListWidth + 'px').add(sideMenuPanelListEl).removeClass('loading');
                 }
             }).sideMenu('select', 'menu');
             $('#horizentalTabs').tabAdapter({
