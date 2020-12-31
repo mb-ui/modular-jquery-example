@@ -11,6 +11,8 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
             pEl.empty().append(exteranlSearchTemplate + gridTemplate);
             const $gridEl = api.getElementByCody(pEl, 'grid');
             const searchFrom = new SearchFrom(pEl);
+            const gridPagerID = api.createGUID();
+            api.getElementByCody(pEl, 'grid_pager').attr('id', gridPagerID);
             $gridEl.gridAdapter({
                 customSetting: {
                     topToolbarBtns: {
@@ -57,7 +59,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                     name: 'notes',
                     width: 400
                 }],
-                pager: api.getElementByCody(pEl, 'grid_pager').attr('id', `${containerID}grid_pager`).attr('id'),
+                pager: gridPagerID,
                 sortname: 'Country',
                 caption: 'data grid'
             });
