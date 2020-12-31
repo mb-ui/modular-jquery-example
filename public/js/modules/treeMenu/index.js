@@ -1,4 +1,5 @@
 import service from './service.js';
+import api from '../shared/index.js';
 let horizentalTabsEl;
 function createTree(dataTree) {
     horizentalTabsEl = horizentalTabsEl || $('#horizentalTabs');
@@ -9,7 +10,7 @@ function createTree(dataTree) {
                 'Loading ...': 'در حال بارگذاری ...'
             },
             data: (function () {
-                var rootID = "023BE4D3-929B-45D6-AA14-E71899049EB9", data = [{
+                var rootID = api.createGUID(), data = [{
                     text: "Menu",
                     id: rootID,
                     parent: "#",

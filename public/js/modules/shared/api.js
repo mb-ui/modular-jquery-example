@@ -17,6 +17,16 @@
         contains: 'cn',
         does_not_contain: 'nc'
     };
+    templates = {
+        gridInlineBtns: {
+            update: '<span class="ui-icon ui-icon-pencil gridInlineBtn"></span>',
+            delete: '<span class="ui-icon ui-icon-trash gridInlineBtn"></span>'
+        },
+        gridTopToolbarBtns: {
+            create: '<button class="ui-button ui-widget ui-corner-all gridTopToolbarBtn"><span class="ui-icon ui-icon-plus"></span>create</button>',
+            print: '<button class="ui-button ui-widget ui-corner-all gridTopToolbarBtn"><span class="ui-icon ui-icon-print"></span>print</button>'
+        }
+    };
     getResources(url) {
         return $._getResources(url);
     }

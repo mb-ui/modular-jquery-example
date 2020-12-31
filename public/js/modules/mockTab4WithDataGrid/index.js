@@ -16,14 +16,14 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
             $gridEl.gridAdapter({
                 customSetting: {
                     topToolbarBtns: {
-                        '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-plus"></span>create</button>': createBtn
-                        , '<button class="ui-button ui-widget ui-corner-all jqGridTopToolbarBtn"><span class="ui-icon ui-icon-print"></span>print</button>': printBtn
+                        [api.templates.gridTopToolbarBtns.create]: createBtn
+                        , [api.templates.gridTopToolbarBtns.print]: printBtn
                     },
                     inlineBtns: {
                         width: 80,
                         btns: {
-                            '<span class="ui-icon ui-icon-pencil"></span>': updateBtn
-                            , '<span class="ui-icon ui-icon-trash"></span>': deleteBtn
+                            [api.templates.gridInlineBtns.update]: updateBtn
+                            , [api.templates.gridInlineBtns.delete]: deleteBtn
                         }
                     }
                 },
