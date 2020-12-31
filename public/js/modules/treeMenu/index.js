@@ -1,4 +1,5 @@
 import api from '../shared/index.js';
+import service from './service.js';
 let horizentalTabsEl;
 function createTree(dataTree) {
     horizentalTabsEl = horizentalTabsEl || $('#horizentalTabs');
@@ -151,7 +152,7 @@ function createTree(dataTree) {
     });
 }
 export default function (panelElement) {
-    api.getResources(['json/sampleTreeMenuData.json']).done(([data]) => {
+    service.getTreeData().done(([data]) => {
         createTree(data);
     });
 }
