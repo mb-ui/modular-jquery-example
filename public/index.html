@@ -90,13 +90,13 @@
                 panelMinWidth: 150,//optional
                 data: [
                     { iconClass: 'ui-icon ui-icon-flag', id: 'aboutUs', templateUrl: 'html/aboutUs.html', tooltip: 'About Us' },
-                    { iconClass: 'ui-icon ui-icon-folder-open', id: 'menu', templateUrl: 'js/modules/treeMenu/index.html', moduleUrl: 'treeMenu/index.js', tooltip: 'Menu' },
-                    { iconClass: 'ui-icon ui-icon-gear', id: 'setting', templateUrl: 'js/modules/setting/index.html', moduleUrl: 'setting/index.js', tooltip: 'Setting' },
+                    { iconClass: 'ui-icon ui-icon-folder-open', id: 'menu', templateUrl: 'js/modules/treeMenu/index.html', extraData: { moduleUrl: 'treeMenu/index.js' }, tooltip: 'Menu' },
+                    { iconClass: 'ui-icon ui-icon-gear', id: 'setting', templateUrl: 'js/modules/setting/index.html', extraData: { moduleUrl: 'setting/index.js' }, tooltip: 'Setting' },
                     { iconClass: 'ui-icon ui-icon-info', id: 'help', templateUrl: 'html/help.html', tooltip: 'Help' }
                 ],
                 onLoadTemplate: function (menuObj, $panelEl) {
-                    if (menuObj.moduleUrl) {
-                        $$.importModule(menuObj.moduleUrl).then(function (result) {
+                    if (menuObj.extraData && menuObj.extraData.moduleUrl) {
+                        $$.importModule(menuObj.extraData.moduleUrl).then(function (result) {
                             result.default($panelEl);
                         });
                     }

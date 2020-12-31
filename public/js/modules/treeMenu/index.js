@@ -1,4 +1,3 @@
-import api from '../shared/index.js';
 import service from './service.js';
 let horizentalTabsEl;
 function createTree(dataTree) {
@@ -78,8 +77,8 @@ function createTree(dataTree) {
         };
     })());
     $('#sideMenuTreeSearchInput').change(function () {
-        var api = treeEl.jstree(true);
-        api.search($(this).val());
+        var treeViewApi = treeEl.jstree(true);
+        treeViewApi.search($(this).val());
     });
     var openDialog = function (node) {
         $$.importModule(node.data.modulePath).then(function (result) {
