@@ -20,7 +20,11 @@
     "tab",
     "tree",
     "framework",
-    "Example"
+    "Example",
+    "modular",
+    "treeview",
+    "dynamic tabs",
+    "mb ui"
   ],
   "license": "MIT",
   "bugs": {
