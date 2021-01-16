@@ -9,12 +9,36 @@
       "parent": "#"
     },
     {
+      "text": "welcoming tab",
+      "tooltip": "welcoming tab",
+      "type": "tab",
+      "jsModulePath": "welcomingTab/index.js",
+      "id": "6",
+      "parent": "rootID"
+    },
+    {
+      "text": "mock tab 4 with data grid",
+      "tooltip": "mock tab 4 with data grid",
+      "type": "tab",
+      "jsModulePath": "mockTab4WithDataGrid/index.js",
+      "id": "4",
+      "parent": "rootID"
+    },
+    {
       "text": "mock folder",
       "tooltip": "mock folder",
       "id": "1",
       "type": "folder",
       "jsModulePath": "",
       "parent": "rootID"
+    },
+    {
+      "text": "mock dialog",
+      "tooltip": "mock dialog",
+      "type": "dialog",
+      "jsModulePath": "mockTab4WithDataGrid/createDialog/index.js",
+      "id": "7",
+      "parent": "1"
     },
     {
       "text": "mock tab 1",
@@ -39,30 +63,6 @@
       "jsModulePath": "mockTab3/index.js",
       "id": "5",
       "parent": "1"
-    },
-    {
-      "text": "mock tab 4 with data grid",
-      "tooltip": "mock tab 4 with data grid",
-      "type": "tab",
-      "jsModulePath": "mockTab4WithDataGrid/index.js",
-      "id": "4",
-      "parent": "rootID"
-    },
-    {
-      "text": "mock dialog",
-      "tooltip": "mock dialog",
-      "type": "dialog",
-      "jsModulePath": "mockTab4WithDataGrid/createDialog/index.js",
-      "id": "7",
-      "parent": "1"
-    },
-    {
-      "text": "welcoming tab",
-      "tooltip": "welcoming tab",
-      "type": "tab",
-      "jsModulePath": "welcomingTab/index.js",
-      "id": "6",
-      "parent": "rootID"
     }
   ]
 }
