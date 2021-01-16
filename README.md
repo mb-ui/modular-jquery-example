@@ -1,6 +1,7 @@
 # modular-jquery-example
 Example SPA project which implements dynamic tabs using treeview
 
+### [Demo](https://mb-ui.github.io/modular-jquery-example/public/index.html)
 
 ## Dependencies
 
