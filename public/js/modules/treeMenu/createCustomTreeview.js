@@ -1,29 +1,30 @@
-const createCustomTreeview = function ({ treeEl, jstreeOptions, maxSelection }) {
+const createCustomTreeview = function ({ $treeEl, jstreeOptions, extraOptions }) {
     jstreeOptions = createCustomTreeview._alterOptions(jstreeOptions);
-    treeEl.addClass('customTreeview').jstree(jstreeOptions)
+    const { maxSelection } = createCustomTreeview._alterExtraOptions(extraOptions);
+    $treeEl.addClass('customTreeview').jstree(jstreeOptions)
         .on("changed.jstree", function (e, data) {
-            treeEl.trigger('changed.customJStree', [data]);
+            $treeEl.trigger('changed.customJStree', [data]);
             if (data.action === 'ready')
                 return;
             if (!data.event) //manually checked
                 return;
             if ($(data.event.originalEvent.target).hasClass('jstree-checkbox')) //checkbox click
-                if (data.selected.length > maxSelection)
-                    treeEl.jstree('deselect_node', data.node.id);
+                if (maxSelection && (data.selected.length > maxSelection))
+                    $treeEl.jstree('deselect_node', data.node.id);
                 else
-                    data.node.state.selected ? treeEl.trigger('check_node.customJStree', [data])
-                        : treeEl.trigger('uncheck_node.customJStree', [data]);
+                    data.node.state.selected ? $treeEl.trigger('check_node.customJStree', [data])
+                        : $treeEl.trigger('uncheck_node.customJStree', [data]);
             else
-                treeEl.trigger('select_node.customJStree', [data]);
+                $treeEl.trigger('select_node.customJStree', [data]);
         })
         .on('click', function (e) {
             const el = $(e.target);
             if (el.is('li')) { // li click
                 const className = el.children('a.jstree-anchor.custom_a_attr').first()[0].className;
                 if (className.includes('folder'))
-                    treeEl.trigger('folder_click.customJStree', [$(e.target)]);
+                    $treeEl.trigger('folder_click.customJStree', [$(e.target)]);
                 else if (className.includes('dialog'))
-                    treeEl.trigger('open_dialog.customJStree', [treeEl.jstree('get_node', el.attr('id'))]);
+                    $treeEl.trigger('open_dialog.customJStree', [$treeEl.jstree('get_node', el.attr('id'))]);
             }
         });
 };
@@ -32,7 +33,13 @@ createCustomTreeview.defaultOptions = {
         dialog: 'ui-icon ui-icon-newwin',
         folder: 'ui-icon ui-icon-folder-open',
         tab: 'ui-icon ui-icon-extlink'
+    },
+    extraOptions: {
+        maxSelection: null
     }
+};
+createCustomTreeview._alterExtraOptions = function (op) {
+    return $.extend(op || {}, this.defaultOptions.extraOptions);
 };
 createCustomTreeview._alterOptions = function (op) {
     op.plugins = op.plugins || [];

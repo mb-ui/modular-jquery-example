@@ -57,10 +57,10 @@
       "parent": "1"
     },
     {
-      "text": "default selected mock tab",
-      "tooltip": "default selected mock tab",
+      "text": "welcoming tab",
+      "tooltip": "welcoming tab",
       "type": "tab",
-      "jsModulePath": "defaultSelectedMockTab/index.js",
+      "jsModulePath": "welcomingTab/index.js",
       "id": "6",
       "parent": "rootID"
     }
