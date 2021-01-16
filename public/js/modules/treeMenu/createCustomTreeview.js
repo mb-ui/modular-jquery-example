@@ -39,7 +39,7 @@ createCustomTreeview.defaultOptions = {
     }
 };
 createCustomTreeview._alterExtraOptions = function (op) {
-    return $.extend(op || {}, this.defaultOptions.extraOptions);
+    return $.extend(this.defaultOptions.extraOptions, op || {});
 };
 createCustomTreeview._alterOptions = function (op) {
     op.plugins = op.plugins || [];
