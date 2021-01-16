@@ -22,7 +22,7 @@ export default {
         }
         return _data;
     },
-    getClientData: () => Promise.resolve((function () {
+    getClientData: () => $.Deferred().resolve((function () {
         const data = [], uniqueClient = [];
         client.map((value) => {
             if (uniqueClient.indexOf(value) === -1) {
@@ -32,7 +32,7 @@ export default {
         });
         return data;
     })()),
-    getNotesData: () => Promise.resolve((function () {
+    getNotesData: () => $.Deferred().resolve((function () {
         const data = [], uniqueNotes = [];
         notes.map((value) => {
             if (uniqueNotes.indexOf(value) === -1) {
