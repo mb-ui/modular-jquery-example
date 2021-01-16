@@ -123,7 +123,7 @@
                     var treeEl;
                     return function (e, tabId) {
                         treeEl = treeEl || $('#sideMenuTree');
-                        treeEl.jstree('deselect_node', tabId);
+                        treeEl.jstree('deselect_node', tabId, true);
                     }
                 })()
             });

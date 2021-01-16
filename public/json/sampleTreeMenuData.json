@@ -1,67 +1,68 @@
 ﻿{
   "data": [
     {
-      "title": "mock folder",
-      "tooltip": "mock folder",
-      "id": "1",
-      "cssIconClass": "",
+      "text": "Menu",
+      "tooltip": "Menu",
+      "id": "rootID",
       "type": "folder",
       "jsModulePath": "",
-      "parentId": ""
+      "parent": "#"
     },
     {
-      "title": "mock tab 1",
+      "text": "mock folder",
+      "tooltip": "mock folder",
+      "id": "1",
+      "type": "folder",
+      "jsModulePath": "",
+      "parent": "rootID"
+    },
+    {
+      "text": "mock tab 1",
       "tooltip": "mock tab 1",
-      "cssIconClass": "",
       "type": "tab",
       "jsModulePath": "mockTab1/index.js",
       "id": "2",
-      "parentId": "1"
+      "parent": "1"
     },
     {
-      "title": "mock tab 2",
+      "text": "mock tab 2",
       "tooltip": "mock tab 2",
-      "cssIconClass": "",
       "type": "tab",
       "jsModulePath": "mockTab2/index.js",
       "id": "3",
-      "parentId": "1"
+      "parent": "1"
     },
     {
-      "title": "mock tab 3",
+      "text": "mock tab 3",
       "tooltip": "mock tab 3",
-      "cssIconClass": "",
       "type": "tab",
       "jsModulePath": "mockTab3/index.js",
       "id": "5",
-      "parentId": "1"
+      "parent": "1"
     },
     {
-      "title": "mock tab 4 with data grid",
+      "text": "mock tab 4 with data grid",
       "tooltip": "mock tab 4 with data grid",
-      "cssIconClass": "",
       "type": "tab",
       "jsModulePath": "mockTab4WithDataGrid/index.js",
       "id": "4",
-      "parentId": ""
+      "parent": "rootID"
     },
     {
-      "title": "mock dialog",
+      "text": "mock dialog",
       "tooltip": "mock dialog",
-      "cssIconClass": "",
       "type": "dialog",
       "jsModulePath": "mockTab4WithDataGrid/createDialog/index.js",
       "id": "7",
-      "parentId": "1"
+      "parent": "1"
     },
     {
-      "title": "default selected mock tab",
+      "text": "default selected mock tab",
       "tooltip": "default selected mock tab",
-      "cssIconClass": "",
       "type": "tab",
       "jsModulePath": "defaultSelectedMockTab/index.js",
       "id": "6",
-      "parentId": ""
+      "parent": "rootID"
     }
   ]
 }

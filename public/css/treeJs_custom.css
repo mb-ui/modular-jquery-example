@@ -1,8 +1,10 @@
-﻿.no_checkbox {
+﻿.customTreeview .dialog,
+.customTreeview .folder {
     pointer-events: none;
 }
 
-.no_checkbox>i.jstree-checkbox {
+.customTreeview .folder>i.jstree-checkbox,
+.customTreeview .dialog>i.jstree-checkbox {
     display: none;
 }
 

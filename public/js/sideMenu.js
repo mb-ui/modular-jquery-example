@@ -50,18 +50,21 @@
                             return this;
                         var data = this.data(), selectedTabEl = $('.sideMenu-tab.ui-state-active', this);
                         if (selectedTabEl.length) {
+                            //close
                             selectedTabEl.removeClass('ui-state-active');
                             data.els.panel.empty();
                             if (selectedTabEl.attr('tab-id') === id)
                                 return this.sideMenu('close');
+                        } else {
+                            //open
+                            $('[tab-id="' + id + '"].sideMenu-tab').addClass('ui-state-active');
+                            data.els.panel.append(data.loadingTemplate);
+                            data.getTemplate(data.data[id]).done(function (template) {
+                                data.els.panel.empty().append(template);
+                                data.onLoadTemplate(data.data[id], data.els.panel);
+                            });
+                            return this.sideMenu('open');
                         }
-                        $('[tab-id="' + id + '"].sideMenu-tab').addClass('ui-state-active');
-                        data.els.panel.append(data.loadingTemplate);
-                        data.getTemplate(data.data[id]).done(function (template) {
-                            data.els.panel.empty().append(template);
-                            data.onLoadTemplate(data.data[id], data.els.panel);
-                        });
-                        return this.sideMenu('open');
                     default: return this;
                 }
             default: return this;
@@ -71,7 +74,7 @@
         _temps: {
             tabList: '<div class="sideMenu-tabList ui-widget ui-widget-content">',
             panelList: '<div class="sideMenu-panelList ui-widget ui-widget-content ui-corner-let"></div>',
-            panel: '<div class="sideMenu-panel"></div>',
+            panel: '<div class="sideMenu-panel" panel-id="@panelId"></div>',
             resizerContainer: '<div class="sideMenu-resizerContainer"></div>',
             resizer: '<div class="sideMenu-resizer ui-state-default"></div>',
             tab: '<div tab-id="@tabId" class="sideMenu-tab ui-state-default" title="@tooltip"><span tab-id="@tabId" class="@icon"></span></div>',
