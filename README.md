@@ -11,5 +11,4 @@ Example SPA project which implements dynamic tabs using treeview
 * [jQuery World Calendars](https://github.com/kbwood/calendars)
 * [jQuery.validationEngine v3.1.0](https://github.com/posabsolute/jQuery-Validation-Engine)
 * [Multiple Select](http://multiple-select.wenzhixin.net.cn/)
-* [jquery-timepicker](https://github.com/jonthornton/jquery-timepicker)
 * [jstree](https://www.jstree.com/)
