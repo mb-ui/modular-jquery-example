@@ -30,8 +30,8 @@
     getResources(url) {
         return $._getResources(url);
     }
-    getElementByCody($containerEl, codeName) {
-        return $containerEl._findByCode(codeName);
+    getElementByCody($containerEl, codeNameString) {
+        return $containerEl._findByCode(codeNameString);
     }
     createGUID() {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {

@@ -1,4 +1,20 @@
-﻿.customTreeview .dialog,
+﻿/* #sideMenuTree.multiSelectOverflow i.jstree-checkbox,#sideMenuTree.multiSelectOverflow i.jstree-checkbox:hover {
+    cursor   : not-allowed;
+}
+#sideMenuTree.multiSelectOverflow a.jstree-clicked>i.jstree-checkbox {
+    pointer-events: all;
+    cursor        : pointer;
+    display       : inline-block;
+} */
+.customTreeview.multiSelectOverflow a.custom_a_attr>i.jstree-checkbox {
+    cursor: not-allowed;
+}
+
+.customTreeview.multiSelectOverflow a.custom_a_attr.jstree-checked>i.jstree-checkbox {
+    cursor: pointer;
+}
+
+.customTreeview .dialog,
 .customTreeview .folder {
     pointer-events: none;
 }
@@ -8,22 +24,10 @@
     display: none;
 }
 
-#sideMenuTree.multiSelectOverflow a.jstree-clicked>i.jstree-checkbox {
-    pointer-events: all;
-    cursor        : pointer;
-    display       : inline-block;
-}
-
 .jstree-icon.ui-icon {
     width     : 16px !important;
     height    : 16px !important;
     margin-top: 3px;
-}
-
-#sideMenuTree.multiSelectOverflow i.jstree-checkbox,
-#sideMenuTree.multiSelectOverflow i.jstree-checkbox:hover {
-    cursor   : not-allowed;
-    /*display:none;*/
 }
 
 .ui-icon.ui-icon-folder-open.jstree-themeicon-custom {

@@ -25,37 +25,39 @@ export default function ($panelElement) {
                 checked.unshift(homePageID);
                 for (let i = 0, l = checked.length; i < l; i++) {
                     const nodeID = checked[i];
-                    $treeEl.jstree('select_node', nodeID, true); // select without triggering "changed.jstree" event
+                    $treeEl.jstree('check_node', nodeID);
                     nodeID && $horizentalTabsEl.tabAdapter('addTab', $(this).jstree('get_node', nodeID));
                 }
-                $horizentalTabsEl.tabAdapter('activeTab', homePageID);
+                $horizentalTabsEl.tabAdapter('selectTab', homePageID);
             }))
-            .on('select_node.jstree', function (e, data) {
-                if (data.selected.length === maxSelection)
-                    $(this).addClass('multiSelectOverflow');
+            .on("uncheck_node.jstree", function (e, data) {
                 savingSelected.save(data.selected);
             })
-            .on('deselect_node.jstree', function (e, data) {
-                if (data.selected.length < maxSelection)
-                    $(this).removeClass('multiSelectOverflow');
+            .on("check_node.jstree", function (e, data) {
                 savingSelected.save(data.selected);
             })
-            .on('select_node.customJStree', function (e, data) {  //single selection
-                const { node } = data, selectedId = data.selected[0];
-                $(this).removeClass('multiSelectOverflow');
-                $horizentalTabsEl.tabAdapter('getOpenTabIDs').map(function (value) {
-                    if (value != selectedId) {
-                        $horizentalTabsEl.tabAdapter('closeTab', value);
+            .on('maxchecked.customJStree', function (e, data) {
+                $(this).addClass('multiSelectOverflow');
+            })
+            .on('select_node.customJStree', function (e, data, checkedIDs) {  //single selection
+                const { node } = data, $treeEl = $(this).removeClass('multiSelectOverflow');
+                checkedIDs.map(function (checkedID) {
+                    if (checkedID != node.id) {
+                        $treeEl.jstree('uncheck_node', checkedID);
+                        $horizentalTabsEl.tabAdapter('closeTab', checkedID);
                     }
                 });
-                $horizentalTabsEl.tabAdapter('addTab', node).tabAdapter('activeTab', node.id);
+                $treeEl.jstree('check_node', node.id);
+                $horizentalTabsEl.tabAdapter('addTab', node).tabAdapter('selectTab', node.id);
             })
             .on('check_node.customJStree', function (e, data) {
                 const { node } = data;
-                $horizentalTabsEl.tabAdapter('addTab', node).tabAdapter('activeTab', node.id);
+                $horizentalTabsEl.tabAdapter('addTab', node).tabAdapter('selectTab', node.id);
             })
-            .on('uncheck_node.customJStree', function (e, data) { $horizentalTabsEl.tabAdapter('closeTab', data.node.id); })
-            .on('changed.customJStree', function (e, data) { })
+            .on('uncheck_node.customJStree', function (e, data) {
+                $(this).removeClass('multiSelectOverflow');
+                $horizentalTabsEl.tabAdapter('closeTab', data.node.id);
+            })
             .on('folder_click.customJStree', function (e, $li) { $(this).jstree("toggle_node", $li); })
             .on('open_dialog.customJStree', function (e, node) {
                 $$.importModule(node.data.jsModulePath).then(function (result) {

@@ -113,15 +113,17 @@
                     horizentalTabsContainer.css('right', obj.tabListWidth + 'px').add(sideMenuPanelListEl).removeClass('loading');
                 }
             }).sideMenu('select', 'menu');
+        })();
+        (function () {
+            var $treeEl;
             $('#horizentalTabs').tabAdapter({
                 dir: 'rtl',//optional
-                onClose: (function () {
-                    var treeEl;
-                    return function (e, tabId) {
-                        treeEl = treeEl || $('#sideMenuTree');
-                        treeEl.jstree('deselect_node', tabId, true);
-                    }
-                })()
+                beforeActivate: function (e, ui) { $treeEl = $treeEl || $('#sideMenuTree'); },
+                onClose: function (e, tabId) { $treeEl.jstree('uncheck_node', tabId); },
+                activate: function (event, ui) {
+                    const tabID = ui.newTab.attr('aria-controls').replace('tab_', '');
+                    $treeEl.jstree('deselect_all', true).jstree('select_node', tabID, true, true);
+                }
             });
         })();
     </script>

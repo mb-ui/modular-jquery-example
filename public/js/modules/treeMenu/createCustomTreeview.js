@@ -2,20 +2,24 @@ const createCustomTreeview = function ({ $treeEl, jstreeOptions, extraOptions })
     jstreeOptions = createCustomTreeview._alterOptions(jstreeOptions);
     const { maxSelection } = createCustomTreeview._alterExtraOptions(extraOptions);
     $treeEl.addClass('customTreeview').jstree(jstreeOptions)
-        .on("changed.jstree", function (e, data) {
-            $treeEl.trigger('changed.customJStree', [data]);
-            if (data.action === 'ready')
-                return;
-            if (!data.event) //manually checked
-                return;
-            if ($(data.event.originalEvent.target).hasClass('jstree-checkbox')) //checkbox click
-                if (maxSelection && (data.selected.length > maxSelection))
-                    $treeEl.jstree('deselect_node', data.node.id);
-                else
-                    data.node.state.selected ? $treeEl.trigger('check_node.customJStree', [data])
-                        : $treeEl.trigger('uncheck_node.customJStree', [data]);
+        .on('select_node.jstree', function (e, data) {
+            const { event } = data;
+            if (typeof event === 'object' && event !== null)
+                $treeEl.trigger('select_node.customJStree', [data, $treeEl.jstree('get_checked', false)]);
+        })
+        .on('check_node.jstree', function (e, data) {
+            const { node, event } = data, checked = $treeEl.jstree('get_checked', false).length;
+            if (maxSelection && (checked === maxSelection))
+                $treeEl.trigger('maxchecked.customJStree', [data]);
+            if (maxSelection && (checked > maxSelection))
+                $treeEl.jstree('uncheck_node', node.id);
             else
-                $treeEl.trigger('select_node.customJStree', [data]);
+                (typeof event === 'object' && event !== null) && $treeEl.trigger('check_node.customJStree', [data]);
+        })
+        .on('uncheck_node.jstree', function (e, data) {
+            const { event } = data;
+            if (typeof event === 'object' && event !== null)
+                $treeEl.trigger('uncheck_node.customJStree', [data]);
         })
         .on('click', function (e) {
             const el = $(e.target);
@@ -49,7 +53,7 @@ createCustomTreeview._alterOptions = function (op) {
         checkbox: {
             three_state: false,
             whole_node: false,
-            tie_selection: true
+            tie_selection: false
         }
     });
     for (let i = 0, data = op.core.data, l = data.length; i < l; i++) {
