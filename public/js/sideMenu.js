@@ -14,7 +14,7 @@
                         .append(els.tabList.width(data.tabListWidth).addClass(dir))
                         .append(els.resizerContainer.addClass(dir))
                         .append(els.resizer);
-                    setXPos(els.panelList, data.tabListWidth).width(data.panelWidth);
+                    setXPos(els.panelList, data.tabListWidth + 2).width(data.panelWidth);
                     setXPos(els.resizer, data.tabListWidth + data.panelWidth + 2).addClass(dir);
                     setXPos(els.resizerContainer, data.tabListWidth);
                     self._makeResizable($el, data);
@@ -55,7 +55,7 @@
         _close: function ($el) {
             var data = $el.data(), els = data.els;
             els.resizer.add(els.panelList).hide();
-            $el.data('isOpen', false);
+            $el.data('isOpen', false).removeClass('sideMenu-open');
             data.onClose({ panelWidth: data.panelWidth, tabListWidth: data.tabListWidth });
             $el.trigger('onclose.sidemenu', [{ panelWidth: data.panelWidth, tabListWidth: data.tabListWidth }]);
             return this;
@@ -104,7 +104,7 @@
         _open: function ($el) {
             var data = $el.data(), els = data.els;
             els.resizer.add(els.panelList).show();
-            $el.data('isOpen', true);
+            $el.data('isOpen', true).addClass('sideMenu-open');
             data.onOpen({ panelWidth: data.panelWidth, tabListWidth: data.tabListWidth });
             $el.trigger('onopen.sidemenu', [{ panelWidth: data.panelWidth, tabListWidth: data.tabListWidth }]);
         },

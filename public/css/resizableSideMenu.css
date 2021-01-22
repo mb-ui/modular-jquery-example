@@ -3,6 +3,7 @@
     top             : 1px;
     bottom          : 2px;
     background-image: none;
+    border-radius   : 6px;
 }
 
 .sideMenu-panelList>.sideMenu-panel {
@@ -10,21 +11,41 @@
 }
 
 .sideMenu-tabList.rtl {
-    right                    : 0px;
-    left                     : auto;
-    border-bottom-left-radius: 6px;
-    border-top-left-radius   : 6px;
+    right: 2px;
+    left : auto;
+
+}
+
+.sideMenu-open>.sideMenu-tabList.rtl {
+    border-bottom-left-radius: 1px;
+    border-top-left-radius   : 1px;
+    border-left              : 0px;
 }
 
 .sideMenu-tabList.ltr {
-    left                      : 0px;
-    right                     : auto;
-    border-bottom-right-radius: 6px;
-    border-top-right-radius   : 6px;
+    left : 2px;
+    right: auto;
 }
 
-.sideMenu-open>.sideMenu-tabList {
-    border-radius: 1px !important;
+.sideMenu-open>.sideMenu-tabList.ltr {
+    border-bottom-right-radius: 1px;
+    border-top-right-radius   : 1px;
+    border-right              : 0px;
+}
+
+.sideMenu-tabList.rtl>.sideMenu-tab:first-child,
+.sideMenu-tabList.ltr>.sideMenu-tab:first-child {
+    border-top-right-radius: 5px;
+    border-top-left-radius : 5px;
+    border-top             : 0px;
+}
+
+.sideMenu-open>.sideMenu-tabList.rtl>.sideMenu-tab:first-child {
+    border-top-left-radius: 1px;
+}
+
+.sideMenu-open>.sideMenu-tabList.ltr>.sideMenu-tab:first-child {
+    border-top-right-radius: 1px;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */

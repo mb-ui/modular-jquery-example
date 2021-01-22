@@ -59,7 +59,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
                 }],
                 pager: api.getElementByCody(pEl, 'grid_pager'),// it can be '#'+pagerID or pager jquery Element,
                 sortname: 'Country',
-                caption: 'sample data grid'
+                caption: 'data grid title'
             });
             // searchFrom.setValues({
             //     Capital: '',

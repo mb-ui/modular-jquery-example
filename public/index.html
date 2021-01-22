@@ -89,13 +89,13 @@
                 },
                 onResize: function (e, ui, obj) {
                     var tabListWidth = obj.tabListWidth, panelWidth = obj.panelWidth;
-                    horizentalTabsContainer.css('right', tabListWidth + panelWidth + 4 + 'px').add(sideMenuPanelListEl).removeClass('loading');
+                    horizentalTabsContainer.css('right', tabListWidth + panelWidth + 5 + 'px').add(sideMenuPanelListEl).removeClass('loading');
                 },
                 onOpen: function (obj) {
-                    horizentalTabsContainer.css('right', obj.tabListWidth + obj.panelWidth + 4 + 'px');
+                    horizentalTabsContainer.css('right', obj.tabListWidth + obj.panelWidth + 5 + 'px');
                 },
                 onClose: function (obj) {
-                    horizentalTabsContainer.css('right', obj.tabListWidth + 'px').add(sideMenuPanelListEl).removeClass('loading');
+                    horizentalTabsContainer.css('right', obj.tabListWidth + 1 + 'px').add(sideMenuPanelListEl).removeClass('loading');
                 }
             })
                 .on('firstselecttab.sidemenu', function (e, ui) {
