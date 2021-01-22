@@ -2,6 +2,10 @@
     float: right;
 }
 
+.tabAdapter-displayNone {
+    display: none !important;
+}
+
 .ui-tabs-tab>.ui-icon-close {
     position: absolute;
     left    : 1px;
@@ -14,12 +18,12 @@
     padding   : 2px !IMPORTANT;
 }
 
-#horizentalTabList>li,
-#horizentalTabList>li>a {
+#horizentalTabs>ul>li,
+#horizentalTabs>ul>li>a {
     outline: none !important;
 }
 
-#horizentalTabList>li>a:hover {
+#horizentalTabs>ul>li>a:hover {
     cursor: pointer;
 }
 
@@ -40,6 +44,6 @@
     overflow-x: hidden;
 }
 
-#horizentalTabList>li>a {
+#horizentalTabs>ul>li>a {
     padding: 2px 12px 2px 12px;
 }

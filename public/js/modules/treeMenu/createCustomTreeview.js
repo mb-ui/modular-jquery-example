@@ -1,34 +1,34 @@
 const createCustomTreeview = function ({ $treeEl, jstreeOptions, extraOptions }) {
     jstreeOptions = createCustomTreeview._alterOptions(jstreeOptions);
     const { maxSelection } = createCustomTreeview._alterExtraOptions(extraOptions);
-    $treeEl.addClass('customTreeview').jstree(jstreeOptions)
+    return $treeEl.addClass('customTreeview').jstree(jstreeOptions)
         .on('select_node.jstree', function (e, data) {
             const { event } = data;
             if (typeof event === 'object' && event !== null)
-                $treeEl.trigger('select_node.customJStree', [data, $treeEl.jstree('get_checked', false)]);
+                $treeEl.trigger('select_node.customjstree', [data, $treeEl.jstree('get_checked', false)]);
         })
         .on('check_node.jstree', function (e, data) {
             const { node, event } = data, checked = $treeEl.jstree('get_checked', false).length;
             if (maxSelection && (checked === maxSelection))
-                $treeEl.trigger('maxchecked.customJStree', [data]);
+                $treeEl.trigger('maxchecked.customjstree', [data]);
             if (maxSelection && (checked > maxSelection))
                 $treeEl.jstree('uncheck_node', node.id);
             else
-                (typeof event === 'object' && event !== null) && $treeEl.trigger('check_node.customJStree', [data]);
+                (typeof event === 'object' && event !== null) && $treeEl.trigger('check_node.customjstree', [data]);
         })
         .on('uncheck_node.jstree', function (e, data) {
             const { event } = data;
             if (typeof event === 'object' && event !== null)
-                $treeEl.trigger('uncheck_node.customJStree', [data]);
+                $treeEl.trigger('uncheck_node.customjstree', [data]);
         })
         .on('click', function (e) {
             const el = $(e.target);
             if (el.is('li')) { // li click
                 const className = el.children('a.jstree-anchor.custom_a_attr').first()[0].className;
                 if (className.includes('folder'))
-                    $treeEl.trigger('folder_click.customJStree', [$(e.target)]);
+                    $treeEl.trigger('folder_click.customjstree', [$(e.target)]);
                 else if (className.includes('dialog'))
-                    $treeEl.trigger('open_dialog.customJStree', [$treeEl.jstree('get_node', el.attr('id'))]);
+                    $treeEl.trigger('open_dialog.customjstree', [$treeEl.jstree('get_node', el.attr('id'))]);
             }
         });
 };

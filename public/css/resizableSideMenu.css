@@ -5,6 +5,10 @@
     background-image: none;
 }
 
+.sideMenu-panelList>.sideMenu-panel {
+    display: none;
+}
+
 .sideMenu-tabList.rtl {
     right                    : 0px;
     left                     : auto;
@@ -28,6 +32,10 @@
     border-top-right-radius   : 6px;
     border-bottom-right-radius: 6px;
     box-shadow                : 2px 0px 4px lightgrey;
+}
+
+.sideMenu-tabList>.sideMenu-tab {
+    list-style: none;
 }
 
 .sideMenu-resizer.rtl {
@@ -79,6 +87,10 @@
 /* ///////////////////////////////////////////////////////////////////////////// */
 .sideMenu-panelList.ltr {
     direction: ltr;
+}
+
+.sideMenu-panelList>.sideMenu-panel.sideMenu-selected {
+    display: block;
 }
 
 .sideMenu-panelList.rtl {

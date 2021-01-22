@@ -15,6 +15,10 @@
     outline: none !important;
 }
 
+.ui-jqgrid-view>.frozen-div.ui-jqgrid-hdiv {
+    display: none;
+}
+
 .ui-jqgrid-view>.ui-userdata {
     height: 30px !important;
 }

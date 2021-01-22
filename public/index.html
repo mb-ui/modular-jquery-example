@@ -42,8 +42,6 @@
             <div id="horizentalMenuContainer" class="rtl" style="right:356px;">
                 <div id="horizentalMenuContainerInner" class="ui-widget ui-widget-content ui-corner-all">
                     <div id="horizentalTabs">
-                        <ul id="horizentalTabList">
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -84,19 +82,6 @@
                 tabListWidth: 40,//optional
                 panelWidth: 310,//optional
                 panelMinWidth: 150,//optional
-                data: [
-                    { iconClass: 'ui-icon ui-icon-flag', id: 'aboutUs', templateUrl: 'html/aboutUs.html', tooltip: 'About Us' },
-                    { iconClass: 'ui-icon ui-icon-folder-open', id: 'menu', templateUrl: 'js/modules/treeMenu/index.html', extraData: { moduleUrl: 'treeMenu/index.js' }, tooltip: 'Menu' },
-                    { iconClass: 'ui-icon ui-icon-gear', id: 'setting', templateUrl: 'js/modules/setting/index.html', extraData: { moduleUrl: 'setting/index.js' }, tooltip: 'Setting' },
-                    { iconClass: 'ui-icon ui-icon-info', id: 'help', templateUrl: 'html/help.html', tooltip: 'Help' }
-                ],
-                onLoadTemplate: function (menuObj, $panelEl) {
-                    if (menuObj.extraData && menuObj.extraData.moduleUrl) {
-                        $$.importModule(menuObj.extraData.moduleUrl).then(function (result) {
-                            result.default($panelEl);
-                        });
-                    }
-                },
                 beforeResizeAsync: function (e, ui) {
                     if (!sideMenuPanelListEl)
                         sideMenuPanelListEl = $('.sideMenu-panelList', sideMenuContainer).first();
@@ -112,18 +97,29 @@
                 onClose: function (obj) {
                     horizentalTabsContainer.css('right', obj.tabListWidth + 'px').add(sideMenuPanelListEl).removeClass('loading');
                 }
-            }).sideMenu('select', 'menu');
-        })();
-        (function () {
-            var $treeEl;
+            })
+                .on('firstselecttab.sidemenu', function (e, ui) {
+                    debugger;
+                    ui.panel.append('<p>loading...</p>');
+                    var extarOptions = ui.tabObj.extarOptions;
+                    $.ajax({
+                        url: extarOptions.templateUrl,
+                        dataType: 'html',
+                        type: 'get'
+                    }).done(function (data) {
+                        ui.panel.empty().append(data);
+                        if (extarOptions.moduleUrl) { $$.importModule(extarOptions.moduleUrl).then(function (result) { result.default(ui.panel); }); }
+                    });
+                })
+                .sideMenu('openTabs', [
+                    { icon: 'ui-icon ui-icon-flag', id: 'aboutUs', text: '', tooltip: 'About Us', extarOptions: { templateUrl: 'html/aboutUs.html' } },
+                    { icon: 'ui-icon ui-icon-folder-open', id: 'menu', text: '', extarOptions: { moduleUrl: 'treeMenu/index.js', templateUrl: 'js/modules/treeMenu/index.html' }, tooltip: 'Menu' },
+                    { icon: 'ui-icon ui-icon-gear', id: 'setting', text: '', extarOptions: { moduleUrl: 'setting/index.js', templateUrl: 'js/modules/setting/index.html' }, tooltip: 'Setting' },
+                    { icon: 'ui-icon ui-icon-info', id: 'help', text: '', tooltip: 'Help', extarOptions: { templateUrl: 'html/help.html' } }
+                ])
+                .sideMenu('selectTab', 'menu');
             $('#horizentalTabs').tabAdapter({
-                dir: 'rtl',//optional
-                beforeActivate: function (e, ui) { $treeEl = $treeEl || $('#sideMenuTree'); },
-                onClose: function (e, tabId) { $treeEl.jstree('uncheck_node', tabId); },
-                activate: function (event, ui) {
-                    const tabID = ui.newTab.attr('aria-controls').replace('tab_', '');
-                    $treeEl.jstree('deselect_all', true).jstree('select_node', tabID, true, true);
-                }
+                dir: 'rtl'//optional
             });
         })();
     </script>
