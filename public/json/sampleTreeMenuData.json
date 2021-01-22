@@ -33,10 +33,10 @@
       "parent": "rootID"
     },
     {
-      "text": "mock dialog",
-      "tooltip": "mock dialog",
+      "text": "sample dialog",
+      "tooltip": "sample dialog",
       "type": "dialog",
-      "jsModulePath": "sampleDataGrid/createDialog/index.js",
+      "jsModulePath": "sampleDataGrid/actions/createButton.js",
       "id": "7",
       "parent": "1"
     },
