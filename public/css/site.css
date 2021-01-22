@@ -42,21 +42,21 @@ html body * {
     cursor: pointer;
 }
 
-.dpk-button,
+.cutomButton,
 input {
     outline: none !important;
 }
 
-.dpk-button {
+.cutomButton {
     padding: 2px 10px 2px 10px;
     cursor : pointer;
 }
 
-.dpk-button>span {
+.cutomButton>span {
     margin-left: 5px;
 }
 
-.inputHeight {
+.cutomInput {
     height       : 28px;
     border-radius: 5px;
 }

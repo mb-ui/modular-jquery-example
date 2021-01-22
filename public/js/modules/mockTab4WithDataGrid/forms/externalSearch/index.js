@@ -25,11 +25,13 @@ class SearchForm extends FormValidation {
         return this.setValues({ fromDay: '', toDay: '' });
     }
     getGridFilters() {
-        const data = this.getValues();
-        return [
-            { field: 'day', op: api.gridFilterTypes.greater_or_equal, data: data.fromDay },
-            { field: 'day', op: api.gridFilterTypes.less_or_equal, data: data.toDay }
-        ];
+        const formData = this.getValues();
+        const gridFilterData = [];
+        if (formData.fromDay)
+            gridFilterData.push({ field: 'day', op: api.gridFilterTypes.greater_or_equal, data: formData.fromDay });
+        if (formData.toDay)
+            gridFilterData.push({ field: 'day', op: api.gridFilterTypes.less_or_equal, data: formData.toDay });
+        return gridFilterData;
     }
 }
 export default SearchForm;

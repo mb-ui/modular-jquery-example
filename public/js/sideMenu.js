@@ -41,7 +41,6 @@
             case 2:
                 switch ((arg[0]).toUpperCase()) {
                     case 'SELECTTAB':
-                        debugger;
                         self._selectTab($el, arg[1])._open($el);
                         return $el;
                     case 'OPENTABS':
