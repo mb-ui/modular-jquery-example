@@ -36,10 +36,10 @@
 
 #horizentalTabs>.ui-tabs-panel {
     position  : absolute;
-    top       : 33px;
-    bottom    : 2px;
-    right     : 2px;
-    left      : 2px;
+    top       : 31px;
+    bottom    : 0px;
+    right     : 0px;
+    left      : 0px;
     overflow-y: auto;
     overflow-x: hidden;
 }

@@ -60,9 +60,9 @@
 }
 
 .sideMenu-resizer.rtl {
-    border-top-left-radius   : 6px;
-    border-bottom-left-radius: 6px;
-    box-shadow               : -2px 0px 4px lightgrey;
+    border-top-left-radius      : 6px;
+    border-bottom-left-radius   : 6px;
+    /* box-shadow               : -2px 0px 4px lightgrey; */
 }
 
 .sideMenu-resizer {
