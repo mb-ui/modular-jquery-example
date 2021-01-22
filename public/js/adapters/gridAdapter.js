@@ -1,4 +1,13 @@
 ﻿(function ($) {
+    var gridPagerCounter = 0;
+    $.extend($.jgrid.nav, {
+        edit: false,
+        add: false,
+        del: false,
+        search: false,
+        refreshstate: 'current',
+        refresh: true
+    });
     function _createInlineBtns(options, $el) {
         var str = '', btns = options.customSetting.inlineBtns.btns;
         $.each(btns, function (i) { str += i; });
@@ -34,7 +43,17 @@
                     var options = arg[0], $el = this, containsInlineBtns, containsTopToolbarBtns;
                     options.rowNum = options.rowNum || 50;
                     options.rowList = options.rowList || [50, 100, 200];
-                    options.pager || (options.scroll = 1);
+                    if (options.pager) {
+                        if (typeof options.pager !== 'string') {  // it must be a jquery element
+                            if (!options.pager.attr('id')) {
+                                gridPagerCounter++;
+                                options.pager.attr('id', 'grid_pager_' + gridPagerCounter);
+                            }
+                            options.pager = '#' + options.pager.attr('id');
+                        }
+                    } else {
+                        options.scroll = 1;
+                    }
                     (options.width || options.autowidth) || (options.autowidth = true);
                     options.customSetting && (function () {
                         var _setting = options.customSetting;
@@ -63,12 +82,7 @@
                         rownumbers: true
                     })).jqGrid('filterToolbar', {
                         searchOperators: true,
-                        autoSearch: true,
-                        //beforeSearch: function (a,b,c) {
-                        //    debugger;
-                        //    //var that = this, postData = $el.jqGrid('getGridParam', 'postData');
-                        //    return false;
-                        //}
+                        autoSearch: true
                     });
                     containsInlineBtns && $el.jqGrid('setFrozenColumns');
                     containsTopToolbarBtns && (function () {
@@ -92,32 +106,7 @@
                             _btns[_temp] && _btns[_temp]({ e: e, $gridEl: $el });
                         });
                     })();
-                    options.pager && $el.navGrid(options.pager, {
-                        edit: false,
-                        add: false,
-                        del: false,
-                        search: false,
-                        refresh: true
-                    }).navButtonAdd(options.pager, {
-                        caption: "Set Developed",
-                        buttonicon: "ui-icon-circle-check",
-                        position: "first",
-                        title: "Set Developed",
-                        onClickButton: function () {
-                            var selRowIds = grid.jqGrid('getGridParam', 'selarrrow');
-                            var data;
-                            var image;
-                            for (var i = 0; i < selRowIds.length; i++) {
-                                data = grid.getRowData(selRowIds[i]);
-                                image = "<img src='http://www.clker.com/cliparts/q/j/I/0/8/d/green-circle-icon-md.png' alt='green light' style='width:15px;height:15px'/>";
-                                data.Developed = image;
-                                $('#' + data.Country + ' [aria-describedby="pays_grid_Developed"]').html(image);
-                                grid.jqGrid("resetSelection");
-                                grid.jqGrid('setRowData', i, data[i]);
-                                grid.jqGrid('saveRow', i, false);
-                            }
-                        }
-                    });
+                    options.pager && $el.jqGrid("navGrid", options.pager);
                     return $el;
                 } else {
                     return this.jqGrid(arg[0]);

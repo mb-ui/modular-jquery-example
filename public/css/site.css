@@ -43,7 +43,10 @@ html body * {
 }
 
 .cutomButton,
-input {
+input,
+button,
+select,
+[role="button"] {
     outline: none !important;
 }
 
