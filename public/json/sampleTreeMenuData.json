@@ -17,10 +17,10 @@
       "parent": "rootID"
     },
     {
-      "text": "mock tab 4 with data grid",
-      "tooltip": "mock tab 4 with data grid",
+      "text": "sample data grid",
+      "tooltip": "sample data grid",
       "type": "tab",
-      "jsModulePath": "mockTab4WithDataGrid/index.js",
+      "jsModulePath": "sampleDataGrid/index.js",
       "id": "4",
       "parent": "rootID"
     },
@@ -36,7 +36,7 @@
       "text": "mock dialog",
       "tooltip": "mock dialog",
       "type": "dialog",
-      "jsModulePath": "mockTab4WithDataGrid/createDialog/index.js",
+      "jsModulePath": "sampleDataGrid/createDialog/index.js",
       "id": "7",
       "parent": "1"
     },

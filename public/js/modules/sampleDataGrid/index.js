@@ -6,7 +6,7 @@ import SearchFrom from './forms/externalSearch/index.js';
 import services from './services.js';
 import api from '../shared/index.js';
 export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
-    return api.getResources(['js/modules/mockTab4WithDataGrid/index.html', 'js/modules/mockTab4WithDataGrid/forms/externalSearch/index.html'])
+    return api.getResources(['js/modules/sampleDataGrid/index.html', 'js/modules/sampleDataGrid/forms/externalSearch/index.html'])
         .then(function ([gridTemplate, exteranlSearchTemplate]) {
             pEl.empty().append(exteranlSearchTemplate + gridTemplate);
             const $gridEl = api.getElementByCody(pEl, 'grid');

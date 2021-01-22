@@ -4,7 +4,7 @@ export default function ({ e, $gridEl }) {
     let form;
     $('<div>').dialogAdapter({
         extendedSetting: {
-            templateUrl: 'js/modules/mockTab4WithDataGrid/forms/create/index.html',
+            templateUrl: 'js/modules/sampleDataGrid/forms/create/index.html',
             afterLoadTemplate: function ({ $dialogEl }) {
                 form = new CreateForm($dialogEl);
             }
