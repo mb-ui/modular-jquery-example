@@ -1,5 +1,5 @@
 const createCustomTreeview = function ({ $treeEl, jstreeOptions, extraOptions }) {
-    jstreeOptions = createCustomTreeview._alterOptions(jstreeOptions);
+    jstreeOptions = createCustomTreeview._alterJstreeOptions(jstreeOptions);
     const { maxSelection } = createCustomTreeview._alterExtraOptions(extraOptions);
     return $treeEl.addClass('customTreeview').jstree(jstreeOptions)
         .on('select_node.jstree', function (e, data) {
@@ -45,7 +45,7 @@ createCustomTreeview.defaultOptions = {
 createCustomTreeview._alterExtraOptions = function (op) {
     return $.extend(this.defaultOptions.extraOptions, op || {});
 };
-createCustomTreeview._alterOptions = function (op) {
+createCustomTreeview._alterJstreeOptions = function (op) {
     op.plugins = op.plugins || [];
     const plugs = op.plugins;
     plugs.indexOf("checkbox") === -1 && plugs.push("checkbox");

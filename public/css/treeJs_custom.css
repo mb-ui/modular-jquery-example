@@ -1,16 +1,16 @@
-﻿/* #sideMenuTree.multiSelectOverflow i.jstree-checkbox,#sideMenuTree.multiSelectOverflow i.jstree-checkbox:hover {
+﻿/* #sideMenuTree.customTreeView-maxSelection i.jstree-checkbox,#sideMenuTree.customTreeView-maxSelection i.jstree-checkbox:hover {
     cursor   : not-allowed;
 }
-#sideMenuTree.multiSelectOverflow a.jstree-clicked>i.jstree-checkbox {
+#sideMenuTree.customTreeView-maxSelection a.jstree-clicked>i.jstree-checkbox {
     pointer-events: all;
     cursor        : pointer;
     display       : inline-block;
 } */
-.customTreeview.multiSelectOverflow a.custom_a_attr>i.jstree-checkbox {
+.customTreeview.customTreeView-maxSelection a.custom_a_attr>i.jstree-checkbox {
     cursor: not-allowed;
 }
 
-.customTreeview.multiSelectOverflow a.custom_a_attr.jstree-checked>i.jstree-checkbox {
+.customTreeview.customTreeView-maxSelection a.custom_a_attr.jstree-checked>i.jstree-checkbox {
     cursor: pointer;
 }
 

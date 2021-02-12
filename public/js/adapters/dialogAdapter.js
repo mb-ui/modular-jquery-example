@@ -33,7 +33,7 @@
                             options.open && options.open(event, ui);
                             workingWithurl && that.next().hide();
                         }, beforeLoadTemplate: function () {
-                            that.append('در حال بارگذاری...');
+                            that.append('loading...');
                             ex.beforeLoadTemplate && ex.beforeLoadTemplate({ $dialogEl: that });
                         }, afterLoadTemplate: function (temp) {
                             var ex = options.extendedSetting;

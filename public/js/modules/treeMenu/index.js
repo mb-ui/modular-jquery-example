@@ -49,11 +49,11 @@ export default function ($panelElement) {
                 savingSelected.save(data.selected);
             })
             .on('maxchecked.customjstree', function (e, data) {
-                $(this).addClass('multiSelectOverflow');
+                $(this).addClass('customTreeView-maxSelection');
             })
             .on('select_node.customjstree', function (e, data, checkedIDs) {  //single selection
                 const { node } = data;
-                $(this).removeClass('multiSelectOverflow');
+                $(this).removeClass('customTreeView-maxSelection');
                 checkedIDs.map(checkedID => {
                     if (checkedID != node.id) {
                         $(this).jstree('uncheck_node', checkedID);
@@ -68,7 +68,7 @@ export default function ($panelElement) {
                 _openTabByNodeID($horizentalTabsEl, node, true);
             })
             .on('uncheck_node.customjstree', function (e, data) {
-                $(this).removeClass('multiSelectOverflow');
+                $(this).removeClass('customTreeView-maxSelection');
                 $horizentalTabsEl.tabAdapter('closeTab', tabPrefix + data.node.id);
             })
             .on('folder_click.customjstree', function (e, $li) { $(this).jstree("toggle_node", $li); })
@@ -83,7 +83,7 @@ export default function ($panelElement) {
             $customTreeview.jstree('deselect_all', true).jstree('select_node', checkedNodeID, true, true);
         }).on('onclose.tabAdapter', function (e, closeTabID) {
             const uncheckedNodeID = closeTabID.replace(tabPrefix, '');
-            $customTreeview.jstree('uncheck_node', uncheckedNodeID).jstree('deselect_node', uncheckedNodeID).removeClass('multiSelectOverflow');
+            $customTreeview.jstree('uncheck_node', uncheckedNodeID).jstree('deselect_node', uncheckedNodeID).removeClass('customTreeView-maxSelection');
         }).on('beforefirstactivate.tabAdapter', function (e, ui) {
             var tabObj = $(this).tabAdapter('getTabObj', ui.newTab), $panelEl = ui.newPanel.append('<p>loading...</p>');
             $$.importModule(tabObj.extarOptions.jsModulePath).then(function (result) {

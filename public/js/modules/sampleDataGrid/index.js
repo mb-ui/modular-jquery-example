@@ -68,7 +68,7 @@ export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
             //     FromDateString: '1399/6/13'
             // });
             api.getElementByCody(pEl, 'searchSubmit').click(function (e) {
-                if (searchFrom.validate() === true)
+                if (searchFrom.validate())
                     $gridEl.gridAdapter('applyExternalSearch', searchFrom.getGridFilters());
             });
         });

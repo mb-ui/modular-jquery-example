@@ -12,8 +12,8 @@ class SearchForm extends FormValidation {
     }
     getValues() {
         return {
-            fromDay: this.fromDay.calendarAdapter('getMilliSecDate'),
-            toDay: this.toDay.calendarAdapter('getMilliSecDate')
+            fromDay: this.fromDay.calendarAdapter('getMilliDate'),
+            toDay: this.toDay.calendarAdapter('getMilliDate')
         };
     }
     setValues(obj) {

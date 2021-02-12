@@ -63,60 +63,55 @@
     <script src="external/jstree-master/dist/jstree.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/jqueryExtension.js"></script>
-    <script src="js/sideMenu.js"></script>
+    <script src="js/custom-jqury-widgets/sideMenu/sideMenu.js"></script>
+    <script src="js/adapters/widgetAdapter/widgetAdapter.js"></script>
     <script src="js/adapters/tabAdapter.js"></script>
     <script src="js/adapters/gridAdapter.js"></script>
-    <!-- <script src="js/adapters/multipleSelectAdapter/lang/fa.js"></script> -->
-    <script src="js/adapters/multipleSelectAdapter/index.js"></script>
-    <script src="js/adapters/calendarAdapter/index.js"></script>
-    <!-- <script src="js/adapters/calendarAdapter/lang/fa.js"></script> -->
+    <script src="js/adapters/multipleSelectAdapter.js"></script>
+    <script src="js/adapters/calendarAdapter.js"></script>
     <script src="js/adapters/dialogAdapter.js"></script>
     <script src="js/adapters/validationAdapter.js"></script>
     <script>
         (function () {
             var sideMenuContainer = $('#sideMenuContainer'),
-                horizentalTabsContainer = $('#horizentalMenuContainer'),
-                sideMenuPanelListEl;
-            sideMenuContainer.sideMenu({
+                horizentalTabsContainer = $('#horizentalMenuContainer');
+            sideMenuContainer.jqSideMenu({
                 dir: 'rtl',//optional
                 tabListWidth: 40,//optional
-                panelWidth: 310,//optional
-                panelMinWidth: 150,//optional
-                beforeResizeAsync: function (e, ui) {
-                    if (!sideMenuPanelListEl)
-                        sideMenuPanelListEl = $('.sideMenu-panelList', sideMenuContainer).first();
-                    horizentalTabsContainer.add(sideMenuPanelListEl).addClass('loading');
+                panelListWidth: 310,//optional
+                panelListMinWidth: 150,//optional
+                beforeresize_async: function (e, ui) {
+                    horizentalTabsContainer.add(ui.$panelListEl).addClass('loading');
                 },
-                onResize: function (e, ui, obj) {
-                    var tabListWidth = obj.tabListWidth, panelWidth = obj.panelWidth;
-                    horizentalTabsContainer.css('right', tabListWidth + panelWidth + 5 + 'px').add(sideMenuPanelListEl).removeClass('loading');
+                onresize: function (e, ui) {
+                    horizentalTabsContainer.css('right', ui.tabListWidth + ui.panelListWidth + 5 + 'px').add(ui.$panelListEl).removeClass('loading');
                 },
-                onOpen: function (obj) {
-                    horizentalTabsContainer.css('right', obj.tabListWidth + obj.panelWidth + 5 + 'px');
+                onopen: function (e, ui) {
+                    horizentalTabsContainer.css('right', ui.tabListWidth + ui.panelListWidth + 5 + 'px');
                 },
-                onClose: function (obj) {
-                    horizentalTabsContainer.css('right', obj.tabListWidth + 1 + 'px').add(sideMenuPanelListEl).removeClass('loading');
+                onclose: function (e, ui) {
+                    horizentalTabsContainer.css('right', ui.tabListWidth + 1 + 'px').add(ui.$panelListEl).removeClass('loading');
                 }
             })
-                .on('firstselecttab.sidemenu', function (e, ui) {
-                    ui.panel.append('<p>loading...</p>');
-                    var extarOptions = ui.tabObj.extarOptions;
+                .on('jqsidemenufirstselecttab', function (e, ui) {
+                    ui.$panelEl.append('<p>loading...</p>');
+                    var extarOptions = sideMenuContainer.jqSideMenu('getTabObj', ui.$tabEl).extarOptions;
                     $.ajax({
                         url: extarOptions.templateUrl,
                         dataType: 'html',
                         type: 'get'
                     }).done(function (data) {
-                        ui.panel.empty().append(data);
+                        ui.$panelEl.empty().append(data);
                         if (extarOptions.moduleUrl) { $$.importModule(extarOptions.moduleUrl).then(function (result) { result.default(ui.panel); }); }
                     });
                 })
-                .sideMenu('openTabs', [
+                .jqSideMenu('openTabs', [
                     { icon: 'ui-icon ui-icon-flag', id: 'aboutUs', text: '', tooltip: 'About Us', extarOptions: { templateUrl: 'html/aboutUs.html' } },
                     { icon: 'ui-icon ui-icon-folder-open', id: 'menu', text: '', extarOptions: { moduleUrl: 'treeMenu/index.js', templateUrl: 'js/modules/treeMenu/index.html' }, tooltip: 'Menu' },
                     { icon: 'ui-icon ui-icon-gear', id: 'setting', text: '', extarOptions: { moduleUrl: 'setting/index.js', templateUrl: 'js/modules/setting/index.html' }, tooltip: 'Setting' },
                     { icon: 'ui-icon ui-icon-info', id: 'help', text: '', tooltip: 'Help', extarOptions: { templateUrl: 'html/help.html' } }
                 ])
-                .sideMenu('selectTab', 'menu');
+                .jqSideMenu('selectTab', 'menu');
             $('#horizentalTabs').tabAdapter({
                 dir: 'rtl'//optional
             });

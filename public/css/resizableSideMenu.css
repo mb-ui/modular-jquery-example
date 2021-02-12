@@ -4,6 +4,8 @@
     bottom          : 2px;
     background-image: none;
     border-radius   : 6px;
+    margin          : 0px;
+    padding         : 0px;
 }
 
 .sideMenu-panelList>.sideMenu-panel {

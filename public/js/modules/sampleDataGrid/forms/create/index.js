@@ -16,7 +16,7 @@ class CreateForm extends FormValidation {
     }
     getValues() {
         return {
-            day: this.day.calendarAdapter('getMilliSecDate'),
+            day: this.day.calendarAdapter('getMilliDate'),
             dayString: this.day.val(),
             amount: this.amount.val(),
             tax: this.tax.val(),

@@ -1,4 +1,5 @@
-﻿export default class Api {
+﻿const $ = jQuery;
+export default class Api {
     constructor() {
     }
     gridFilterTypes = {
@@ -33,10 +34,7 @@
     getElementByCody($containerEl, codeNameString) {
         return $containerEl._findByCode(codeNameString);
     }
-    createGUID() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
+    getUniqueID() {
+        return $.now() + '';
     }
 }
