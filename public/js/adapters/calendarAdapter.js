@@ -1,5 +1,5 @@
 ﻿(function ($) {
-    $.custom.widgetAdapter('cusom.calendarAdapter', {
+    $.custom.widgetAdapter('custom.calendarAdapter', {
         options: {
             calendar: $.calendars.instance(),// for specific lang, use it like this => $.calendars.instance('persian')
             renderer: $.calendarsPicker.themeRollerRenderer,
