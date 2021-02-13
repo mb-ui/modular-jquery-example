@@ -5,9 +5,9 @@
             formatSelectAll: function () { return 'Select all'; },
             formatNoMatchesFound: function () { return 'Not matches find'; },
             filter: true,
-            dir: 'ltr',
-            rtlClassName: 'multipleSelectAdapter-rtl',
-            rootClassName: 'multipleSelectAdapter'
+            dir: 'ltr',// additional option
+            rtlClassName: 'multipleSelectAdapter-rtl',// additional option
+            rootClassName: 'multipleSelectAdapter'// additional option
         },
         _create: function () {
             this._basePluginName = 'multipleSelect';
