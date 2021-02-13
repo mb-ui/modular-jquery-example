@@ -1,5 +1,5 @@
 (function (factory) { factory(window, document, window.QUnit, window.jQuery) })(function (w, d, q, $, undefined) {
-    q.module("widgetAdapter : api ");
+    q.module("widgetAdapter : constructor ");
     q.test('create jQuery UI widget and extend $.fn', function (assert) {
         const pluginName = 'mockWidget', namespace = 'custom', prependPluginName = 'hidden_';
         $.fn.mockWidget = undefined;
@@ -10,6 +10,7 @@
             , 'it must call $.widget by prepending pluginName with "hidden_" => $.widget("sampleNamespace.hidden_samplePluginName",...)');
 
     });
+    q.module("widgetAdapter : api ");
     q.test('created jquery plugin instance must extend jquery ui widget built-in props by "_notFindMehtod" prop', function (assert) {
         assert.expect(2);
         const pluginName = 'mockWidget', namespace = 'custom', prependPluginName = 'hidden_', el = $('<div>');
