@@ -38,18 +38,19 @@
                     // otherwise check whether a “public” function is called
                     if (typeof options === 'string' && options[0] !== '_') {
                         //check if instance contains the method
+                        debugger;
                         if (typeof instance[options] === 'function') {
                             var value = instance[options].apply(instance, after);
-                            // check if the value is not a jquery instance and is not chainable then break the .each() and return the value
-                            if (value !== undefined && !(value instanceof jQuery)) {
+                            // check if the value is not instance and is not undefined then break the .each() and return the value
+                            if (value !== undefined && value !== instance) {
                                 publicMehtodResult = value;
                                 return false; // break .each()
                             }
                         } else {
                             // call "_notFindMethod" method on the instance
                             var value = instance._notFindMethod(pluginArgs);
-                            // check if the value is not a jquery instance and is not chainable then break the .each() and return the value
-                            if (value !== undefined && !(value instanceof jQuery)) {
+                            // check if the value is not instance and is not undefined then break the .each() and return the value
+                            if (value !== undefined && value !== instance) {
                                 publicMehtodResult = value;
                                 return false; // break .each()
                             }
