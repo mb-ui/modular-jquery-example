@@ -3,18 +3,15 @@ import service from '../services.js';
 export default function ({ e, $gridEl }) {
     let form;
     $('<div>').dialogAdapter({
-        extendedSetting: {
-            templateUrl: 'js/modules/sampleDataGrid/forms/create/index.html',
-            afterLoadTemplate: function ({ $dialogEl }) {
-                form = new CreateForm($dialogEl);
-            }
-            , beforeLoadTemplate: function (param) { }
+        templateUrl: 'js/modules/sampleDataGrid/forms/create/index.html',
+        afterloadtemplate: function (e, { data }) {
+            $(this).append(data);
+            form = new CreateForm($(this));
         },
+        beforeloadtemplate: function () { },
         title: 'create dialog title',
-        height: 700,
-        width: '90%',
         buttons: {
-            'ok': function ({ $dialogEl }) {
+            'ok': function (e) {
                 if (form.validate() === true) {
                     const data = form.getValues();
                     service.create(data);
@@ -23,7 +20,7 @@ export default function ({ e, $gridEl }) {
                         message += `  ${prop}=${value},`;
                     });
                     alert(message);
-                    $dialogEl.dialogAdapter('close');
+                    $(this).dialogAdapter('close');
                 }
             }
         }
