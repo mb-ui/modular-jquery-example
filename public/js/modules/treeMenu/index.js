@@ -7,11 +7,11 @@ const _openTabByNodeID = function ($tabListRootElement, nodeObj, isSelectedTab) 
         tabID: tabPrefix + nodeObj.id,
         panelID: panelPrefix + nodeObj.id,
         text: nodeObj.text,
-        extarOptions: { jsModulePath: nodeObj.data.jsModulePath }
+        attr: { jsModulePath: nodeObj.data.jsModulePath }
     };
-    $tabListRootElement.tabAdapter('openTab', tabObj);
+    $tabListRootElement.tabAdapter('openTabs', tabObj);
     if (isSelectedTab)
-        $tabListRootElement.tabAdapter('selectTab', tabObj.tabID);
+        $tabListRootElement.tabAdapter('selectTabByID', tabObj.tabID);
 };
 export default function ($panelElement) {
     const $horizentalTabsEl = $('#horizentalTabs');
@@ -39,7 +39,7 @@ export default function ($panelElement) {
                     $(this).jstree('check_node', nodeID);
                     nodeID && _openTabByNodeID($horizentalTabsEl, $(this).jstree('get_node', nodeID));
                 }
-                $horizentalTabsEl.tabAdapter('selectTab', tabPrefix + homePageID);
+                $horizentalTabsEl.tabAdapter('selectTabByID', tabPrefix + homePageID);
                 $('#sideMenuTreeSearchInput').change(e => { $(this).jstree('search', $(e.target).val()); });
             }))
             .on("uncheck_node.jstree", function (e, data) {
@@ -57,7 +57,7 @@ export default function ($panelElement) {
                 checkedIDs.map(checkedID => {
                     if (checkedID != node.id) {
                         $(this).jstree('uncheck_node', checkedID);
-                        $horizentalTabsEl.tabAdapter('closeTab', tabPrefix + checkedID);
+                        $horizentalTabsEl.tabAdapter('closeTabByID', tabPrefix + checkedID);
                     }
                 });
                 $(this).jstree('check_node', node.id);
@@ -69,7 +69,7 @@ export default function ($panelElement) {
             })
             .on('uncheck_node.customjstree', function (e, data) {
                 $(this).removeClass('customTreeView-maxSelection');
-                $horizentalTabsEl.tabAdapter('closeTab', tabPrefix + data.node.id);
+                $horizentalTabsEl.tabAdapter('closeTabByID', tabPrefix + data.node.id);
             })
             .on('folder_click.customjstree', function (e, $li) { $(this).jstree("toggle_node", $li); })
             .on('open_dialog.customjstree', function (e, node) {
@@ -77,21 +77,23 @@ export default function ($panelElement) {
                     result.default({ baseID: '', panelElement: null, treeNodeObj: node });
                 });
             });
+
+        // tabs setting
         $horizentalTabsEl.on('tabsactivate', function (e, ui) {
-            const selectedTabID = $horizentalTabsEl.tabAdapter('getTabID', ui.newTab);
+            const selectedTabID = $horizentalTabsEl.tabAdapter('getTabIdByElement', ui.newTab);
             const checkedNodeID = selectedTabID.replace(tabPrefix, '');
             $customTreeview.jstree('deselect_all', true).jstree('select_node', checkedNodeID, true, true);
-        }).on('onclose.tabAdapter', function (e, closeTabID) {
-            const uncheckedNodeID = closeTabID.replace(tabPrefix, '');
+        }).on('tabadapteronclose', function (e, { removedTabID }) {
+            const uncheckedNodeID = removedTabID.replace(tabPrefix, '');
             $customTreeview.jstree('uncheck_node', uncheckedNodeID).jstree('deselect_node', uncheckedNodeID).removeClass('customTreeView-maxSelection');
-        }).on('beforefirstactivate.tabAdapter', function (e, ui) {
-            var tabObj = $(this).tabAdapter('getTabObj', ui.newTab), $panelEl = ui.newPanel.append('<p>loading...</p>');
-            $$.importModule(tabObj.extarOptions.jsModulePath).then(function (result) {
+        }).on('tabadapterbeforefirstactivate', function (e, ui) {
+            var jsModulePath = ui.newTab.attr('jsModulePath'), $panelEl = ui.newPanel.append('<p>loading...</p>');
+            $$.importModule(jsModulePath).then(function (result) {
                 $panelEl.empty();
                 return result.default({
-                    treeNodeObj: tabObj,
+                    treeNodeObj: {},
                     panelElement: $panelEl,
-                    containerID: tabObj.tabID + '_'
+                    containerID: $panelEl.attr('id') || $.now()
                 });
             });
         });
