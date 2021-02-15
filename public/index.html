@@ -102,7 +102,7 @@
                         type: 'get'
                     }).done(function (data) {
                         ui.$panelEl.empty().append(data);
-                        if (extarOptions.moduleUrl) { $$.importModule(extarOptions.moduleUrl).then(function (result) { result.default(ui.panel); }); }
+                        if (extarOptions.moduleUrl) { $$.importModule(extarOptions.moduleUrl).then(function (result) { result.default(ui.$panelEl); }); }
                     });
                 })
                 .jqSideMenu('openTabs', [

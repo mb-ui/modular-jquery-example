@@ -5,7 +5,7 @@ import deleteBtn from './actions/deleteButton.js';
 import SearchFrom from './forms/externalSearch/index.js';
 import services from './services.js';
 import api from '../shared/index.js';
-export default function ({ panelElement: pEl, treeNodeObj, containerID }) {
+export default function ({ panelElement: pEl, containerID }) {
     return api.getResources(['js/modules/sampleDataGrid/index.html', 'js/modules/sampleDataGrid/forms/externalSearch/index.html'])
         .then(function ([gridTemplate, exteranlSearchTemplate]) {
             pEl.empty().append(exteranlSearchTemplate + gridTemplate);
