@@ -12,30 +12,27 @@ export default function ({ panelElement: pEl, containerID }) {
             const $gridEl = api.getElementByCody(pEl, 'grid');
             const searchFrom = new SearchFrom(pEl);
             $gridEl.gridAdapter({
-                customSetting: {
-                    topToolbarBtns: {
-                        [api.templates.gridTopToolbarBtns.create]: createBtn
-                        , [api.templates.gridTopToolbarBtns.print]: printBtn
-                    },
-                    inlineBtns: {
-                        width: 80,
-                        btns: {
-                            [api.templates.gridInlineBtns.update]: updateBtn
-                            , [api.templates.gridInlineBtns.delete]: deleteBtn
-                        }
-                    }
+                topToolbarBtns: {
+                    [api.templates.gridTopToolbarBtns.create]: createBtn
+                    , [api.templates.gridTopToolbarBtns.print]: printBtn
+                },
+                inlineBtns: {
+                    [api.templates.gridInlineBtns.update]: updateBtn
+                    , [api.templates.gridInlineBtns.delete]: deleteBtn
                 },
                 //url: location.href + 'Home/GetUserData',
                 loadonce: true,
                 data: services.getLocalDataGrid(),
                 datatype: 'local',
                 height: '320',
-                multiselect: true,
+                //multiselect: true,
+                autowidth: true,
                 direction: 'rtl',
                 colNames: ['ID', 'Hidden Day', 'Day', 'Client', 'Amount', 'Tax', 'Total', 'Notes'],
                 colModel: [{
                     name: 'id',
-                    hidden: true
+                    hidden: true,
+                    search: false
                 }, {
                     name: 'day',
                     hidden: true

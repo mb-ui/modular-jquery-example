@@ -1,134 +1,152 @@
 ﻿(function ($) {
-    var gridPagerCounter = 0;
-    $.extend($.jgrid.nav, {
-        edit: false,
-        add: false,
-        del: false,
-        search: false,
-        refreshstate: 'current',
-        refresh: true
-    });
-    function _createInlineBtns(options, $el) {
-        var str = '', btns = options.customSetting.inlineBtns.btns;
-        $.each(btns, function (i) { str += i; });
-        if (!str)
-            return false;
-        options.colNames.unshift(" ");
-        options.colModel.unshift({
-            name: " ",
-            index: 'act',
-            search: false,
-            frozen: true,
-            sortable: false,
-            width: options.customSetting.inlineBtns.width || 300,
-            formatter: function (a, b) {
-                return '<div class="jqGridInlineBtn" rowId="' + b.rowId + '">' + str + '</div>';
+    $.custom.widgetAdapter('custom.gridAdapter', {
+        _privateOptions: {
+            inlineBtnClass: 'gridAdapter-Inlinebuttons',
+            toolbarBtnClass: 'gridAdapter-toolbarbuttons',
+            inlineBtnTemplate: '<span class="@class" _index="@_index" rowId="@rowId">@content</span>',
+            toolbarBtnTemplate: '<span class="@class" _index="@_index">@content</span>'
+        },
+        options: {
+            //****************** extended options ******************
+            defaultColMode: {
+                search: true,
+                searchoptions: {
+                    searchOnEnter: true,
+                    sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge', 'bw', 'bn', 'in', 'ni', 'ew', 'en', 'cn', 'nc'],
+                }
+            },
+            defaultNavigatorOptions: {
+                edit: false,
+                add: false,
+                del: false,
+                search: false,
+                refreshstate: 'current',
+                refresh: true
+            },
+            defaultFilterToolbar: {
+                searchOperators: true,
+                autoSearch: true,
+            },
+            //when it's true, it automatically calls $el.jqgrid('setFrozenColumns') after initializing
+            autoSetFrozenColumns: true,
+            // ex=> { "<span class='ui-icon ui-icon-pencil'></span>":function(e){ // do sth here. },
+            //"<span class='ui-icon ui-icon-trash'></span>":function(e){ // do sth here. } }
+            inlineBtns: null,
+            inlineBtnsColWidth: 70, // it works if inlineBtns options would not be null.
+            // ex=> { "<span class='ui-icon ui-icon-plus'></span>":function(e){ // do sth here. }},
+            topToolbarBtns: null,
+
+            //****************** built-in options ******************
+            toolbar: [true, "top"],
+            mtype: "POST",
+            datatype: "json",
+            sortorder: "asc",
+            gridview: true,
+            viewrecords: true,
+            sortable: true,
+            rownumbers: true,
+            rowNum: 50,
+            rowList: [50, 100, 200]
+        },
+        _create: function () {
+            var _op = this.options;
+            this._basePluginName = 'jqGrid';
+            this._checkPager(_op)._alterColModel(_op)._checkInlineButtons(_op);
+            this.element[this._basePluginName](_op); // initialize plugin
+            _op.pager && this.element[this._basePluginName]('navGrid', _op.pager, _op.defaultNavigatorOptions); // create pager element
+            return this._checkFrozenColumns(_op)._checkFilterToolbar(_op)._checkTopToolbarButtons(_op);
+        },
+        applyExternalSearch: function (param) {
+            var filters, p = this.element[0].p, oldFilters = p.postData.filters;
+            p.search = true;
+            filters = oldFilters ? JSON.parse(oldFilters) : { groupOp: 'AND', rules: [] };
+            filters.rules = filters.rules.concat(param);
+            $.extend(p.postData, { filters: JSON.stringify(filters) });
+            this.element.trigger("reloadGrid", [{ page: 1 }]);
+            p.postData.filters = oldFilters;
+            return this;
+        },
+        _checkPager: function (options) {
+            if (options.pager && typeof options.pager === 'object') {
+                // pager option can be jqurey element then it automatically sets an unique Id on pager element.
+                this._setPagerID(options.pager);
+            } else {
+                options.scroll = 1;
             }
-        });
-        options.shrinkToFit = false;
-        options.forceFit = false;
-        $el.click(function (e) {
-            var el = $(e.target), pEl = el.parent();
-            pEl.hasClass('jqGridInlineBtn') && btns[el[0].outerHTML]({ e: e, $gridEl: $el, rowData: $el.jqGrid('getRowData', pEl.attr('rowId')) });
-        });
-        return true;
-    }
-    var _jqGridAdapter = function () {
-        var arg = arguments, argL = arg.length;
-        switch (argL) {
-            case 0:
-                return this;
-            case 1:
-                if (Object.prototype.toString.call(arg[0]).toUpperCase() === '[OBJECT OBJECT]') {
-                    var options = arg[0], $el = this, containsInlineBtns, containsTopToolbarBtns;
-                    options.rowNum = options.rowNum || 50;
-                    options.rowList = options.rowList || [50, 100, 200];
-                    if (options.pager) {
-                        if (typeof options.pager !== 'string') {  // it must be a jquery element
-                            if (!options.pager.attr('id')) {
-                                gridPagerCounter++;
-                                options.pager.attr('id', 'grid_pager_' + gridPagerCounter);
-                            }
-                            options.pager = '#' + options.pager.attr('id');
-                        }
-                    } else {
-                        options.scroll = 1;
-                    }
-                    (options.width || options.autowidth) || (options.autowidth = true);
-                    options.customSetting && (function () {
-                        var _setting = options.customSetting;
-                        _setting.inlineBtns && (containsInlineBtns = _createInlineBtns(options, $el));
-                        if (_setting.topToolbarBtns) {
-                            options.toolbar = [true, "top"];
-                            containsTopToolbarBtns = true;
-                        }
-                    })();
-                    $.each(options.colModel, function (i, value) {
-                        if (value.name.trim() && ((value.search === undefined) || (value.search)))
-                            value.hidden || (
-                                value.searchoptions = {
-                                    sopt: ['eq', 'ne', 'lt', 'le', 'gt', 'ge', 'bw', 'bn', 'in', 'ni', 'ew', 'en', 'cn', 'nc']
-                                }
-                            );
-                    });
-                    $el.jqGrid($.extend({
-                        mtype: "POST",
-                        datatype: "json",
-                        sortorder: "asc"
-                    }, options, {
-                        gridview: true,
-                        viewrecords: true,
-                        sortable: true,
-                        rownumbers: true
-                    })).jqGrid('filterToolbar', {
-                        searchOperators: true,
-                        autoSearch: true
-                    });
-                    containsInlineBtns && $el.jqGrid('setFrozenColumns');
-                    containsTopToolbarBtns && (function () {
-                        var id = 't_' + $el.attr('id'), _set = options.customSetting, _btns = _set.topToolbarBtns, _temp = '', findEl = function ($el) {
-                            if ($el.attr('id') === id)
-                                return [{ outerHTML: '' }];
-                            var _el, p = $el;
-                            while (!_el)
-                                (function () {
-                                    var parent = p.parent(), parentId = parent.attr('id');
-                                    if (parentId === id)
-                                        _el = p;
-                                    else
-                                        p = parent;
-                                })();
-                            return _el;
-                        };
-                        $.each(_btns, function (i) { _temp += i });
-                        $("#" + id).append(_temp).click(function (e) {
-                            var el = findEl($(e.target)), _temp = el[0].outerHTML;
-                            _btns[_temp] && _btns[_temp]({ e: e, $gridEl: $el });
-                        });
-                    })();
-                    options.pager && $el.jqGrid("navGrid", options.pager);
-                    return $el;
-                } else {
-                    return this.jqGrid(arg[0]);
+            return this;
+        },
+        _checkFrozenColumns: function (options) {
+            options.autoSetFrozenColumns && this.element[this._basePluginName]('setFrozenColumns');
+            return this;
+        },
+        _checkFilterToolbar: function (op) {
+            var toolbar = op.toolbar;
+            if (toolbar.constructor === Array && toolbar[0] === true)
+                this.element[this._basePluginName]('filterToolbar', op.defaultFilterToolbar);
+            return this;
+        },
+        _alterColModel: function (op) {
+            $.each(op.colModel, function (i, value) {
+                op.colModel[i] = $.extend(true, {}, op.defaultColMode, value);
+            });
+            return this;
+        },
+        _setPagerID: function ($pagerEl) {
+            var pagerID = 'pager_' + $.now();
+            $pagerEl.attr('id', pagerID);
+            this.options.pager = '#' + pagerID;
+        },
+        _checkInlineButtons: function (options) {
+            options.inlineBtns && this._addInlineButtons(options, this._privateOptions, options.inlineBtns);
+            return this;
+        },
+        _addInlineButtons: function (options, _privateOptions, btns) {
+            var str = '', that = this, btnsCallbacks = [];
+            inlineBtnTemplate = _privateOptions.inlineBtnTemplate.replace('@class', _privateOptions.inlineBtnClass);
+            $.each(btns, function (i) {// concat buttons templates and create a single template
+                str += inlineBtnTemplate.replace('@content', i).replace('@_index', btnsCallbacks.length);
+                btnsCallbacks.push(btns[i]);
+            });
+            if (!str) { return this; }
+            options.colNames.unshift(" ");
+            options.colModel.unshift({
+                name: " ",
+                index: 'act',
+                search: false,
+                frozen: true,
+                sortable: false,
+                width: options.inlineBtnsColWidth,
+                formatter: function (a, b) {
+                    return str.split('@rowId').join(b.rowId);
                 }
-            case 2:
-                if (arg[0].toUpperCase() === 'APPLYEXTERNALSEARCH') {
-                    (function (param, $gridEl) {
-                        var filters, p = $gridEl[0].p, oldFilters = p.postData.filters;
-                        p.search = true;
-                        filters = oldFilters ? JSON.parse(oldFilters) : { groupOp: 'AND', rules: [] };
-                        filters.rules = filters.rules.concat(param);
-                        $.extend(p.postData, { filters: JSON.stringify(filters) });
-                        $gridEl.trigger("reloadGrid", [{ page: 1 }]);
-                        p.postData.filters = oldFilters;
-                    })(arg[1], this);
-                    return this;
-                } else {
-                    return this.jqGrid(arg[0], arg[1]);
-                }
-            default:
-                return this.jqGrid.apply(this, arg);
+            });
+            options.shrinkToFit = false;
+            options.forceFit = false;
+            this.element.on('click', '.' + _privateOptions.inlineBtnClass, function (e) {
+                btnsCallbacks[parseInt($(this).attr('_index'))].call(that.element, e, $(this).attr('rowId'));
+            });
+            return this;
+        },
+        _checkTopToolbarButtons: function (op) {
+            if (op.topToolbarBtns && op.toolbar.constructor === Array && op.toolbar[0] === true)
+                return this._addTopToolbarButtons(this._privateOptions, op.topToolbarBtns);
+            return this;
+        },
+        _addTopToolbarButtons: function (_privateOptions, btns) {
+            var str = '', that = this, btnsCallbacks = [];
+            toolbarBtnTemplate = _privateOptions.toolbarBtnTemplate.replace('@class', _privateOptions.toolbarBtnClass);
+            $.each(btns, function (i) {// concat buttons templates and create a single template
+                str += toolbarBtnTemplate.replace('@content', i).replace('@_index', btnsCallbacks.length);
+                btnsCallbacks.push(btns[i]);
+            });
+            if (!str) { return this; }
+            $('#t_' + this.element.attr('id')).append(str).on('click', '.' + _privateOptions.toolbarBtnClass, function (e) {
+                btnsCallbacks[parseInt($(this).attr('_index'))].call(that.element, e);
+            });
+            return this;
+        },
+        _notFindMethod: function (paramArray) {
+            return this.element[this._basePluginName].apply(this.element, paramArray);
         }
-    };
-    $._createPlugin('gridAdapter', _jqGridAdapter);
+    });
 })(jQuery);

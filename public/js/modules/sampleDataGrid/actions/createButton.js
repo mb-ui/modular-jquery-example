@@ -1,6 +1,6 @@
 ﻿import CreateForm from '../forms/create/index.js';
 import service from '../services.js';
-export default function ({ e, $gridEl }) {
+export default function (e) {
     let form;
     $('<div>').dialogAdapter({
         templateUrl: 'js/modules/sampleDataGrid/forms/create/index.html',
