@@ -3,8 +3,8 @@ class SearchForm extends FormValidation {
     constructor(containerEl) {
         super(containerEl);
         ////////////////// get the form children elements ///////////////
-        this.fromDay = api.getElementByCody(containerEl, 'FromDay');
-        this.toDay = api.getElementByCody(containerEl, 'ToDay');
+        this.fromDay = containerEl.findByCodeAttr('FromDay');
+        this.toDay = containerEl.findByCodeAttr('ToDay');
 
         ///////////////// dropdowns and datePickers construstors ////////////////////
         this.fromDay.calendarAdapter();

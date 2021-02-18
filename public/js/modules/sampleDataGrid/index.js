@@ -9,7 +9,7 @@ export default function ({ panelElement: pEl, containerID }) {
     return api.getResources(['js/modules/sampleDataGrid/index.html', 'js/modules/sampleDataGrid/forms/externalSearch/index.html'])
         .then(function ([gridTemplate, exteranlSearchTemplate]) {
             pEl.empty().append(exteranlSearchTemplate + gridTemplate);
-            const $gridEl = api.getElementByCody(pEl, 'grid');
+            const $gridEl = pEl.findByCodeAttr('grid');
             const searchFrom = new SearchFrom(pEl);
             $gridEl.gridAdapter({
                 topToolbarBtns: {
@@ -54,7 +54,7 @@ export default function ({ panelElement: pEl, containerID }) {
                     name: 'notes',
                     width: 400
                 }],
-                pager: api.getElementByCody(pEl, 'grid_pager'),// it can be '#'+pagerID or pager jquery Element,
+                pager: pEl.findByCodeAttr('grid_pager'),// it can be '#'+pagerID or pager jquery Element,
                 sortname: 'Country',
                 caption: 'data grid title'
             });
@@ -64,7 +64,7 @@ export default function ({ panelElement: pEl, containerID }) {
             //     PhoneNumber: [1, 3],
             //     FromDateString: '1399/6/13'
             // });
-            api.getElementByCody(pEl, 'searchSubmit').click(function (e) {
+            pEl.findByCodeAttr('searchSubmit').click(function (e) {
                 if (searchFrom.validate())
                     $gridEl.gridAdapter('applyExternalSearch', searchFrom.getGridFilters());
             });

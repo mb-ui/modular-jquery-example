@@ -4,11 +4,11 @@ class CreateForm extends FormValidation {
     constructor(containerEl) {
         super(containerEl);
 
-        this.day = api.getElementByCody(containerEl, 'Day');
-        this.client = api.getElementByCody(containerEl, 'Client');
-        this.amount = api.getElementByCody(containerEl, 'Amount');
-        this.tax = api.getElementByCody(containerEl, 'Tax');
-        this.notes = api.getElementByCody(containerEl, 'Notes');
+        this.day = containerEl.findByCodeAttr('Day');
+        this.client = containerEl.findByCodeAttr('Client');
+        this.amount = containerEl.findByCodeAttr('Amount');
+        this.tax = containerEl.findByCodeAttr('Tax');
+        this.notes = containerEl.findByCodeAttr('Notes');
 
         this.day.calendarAdapter();
         service.getClientData().then(data => { this.client.multipleSelectAdapter({ data, dir: 'rtl' }); });

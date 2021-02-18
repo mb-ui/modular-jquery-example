@@ -1,5 +1,6 @@
 ﻿(function ($) {
-    $.extend({
+    $.custom = $.custom || {};
+    $.extend($.custom, {
         _getResources: function (url) {
             url.constructor === Array || (url = [url]);
             $.each(url, function (i, value) {
@@ -20,18 +21,9 @@
                         arr.push(arg[i][0]);
                 return arr;
             }).catch(function (er) { throw new Error(er.message); });
-        },
-        _createPlugin: function (pluginName, fn) {
-            var obj = {};
-            obj[pluginName] = function () {
-                var arg = arguments, result = [];
-                this.each(function () { result.push(fn.apply($(this), arg)); });
-                return result.length > 1 ? result : (result[0] || null);
-            };
-            $.fn.extend(obj);
-            $.each(fn, function (i, value) { i.charAt(0) === '_' || ($.fn[pluginName][i] = value); });
         }
-    }).fn.extend({
+    });
+    $.fn.extend({
         _toggleTopSearchPanel: function () {
             if (this.hasClass('ui-icon-circle-triangle-n')) {
                 this.addClass('ui-icon-circle-triangle-s').removeClass('ui-icon-circle-triangle-n');
@@ -42,6 +34,8 @@
             }
             return this;
         },
-        _findByCode: function (codeName) { return this.find('[code="' + codeName + '"]').first(); }
+        findByCodeAttr: function (codeName) {
+            return this.find('[code="' + codeName + '"]').first();
+        }
     });
 })(jQuery);

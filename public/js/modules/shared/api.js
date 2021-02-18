@@ -29,10 +29,7 @@ export default class Api {
         }
     };
     getResources(url) {
-        return $._getResources(url);
-    }
-    getElementByCody($containerEl, codeNameString) {
-        return $containerEl._findByCode(codeNameString);
+        return $.custom._getResources(url);
     }
     getUniqueID() {
         return $.now() + '';

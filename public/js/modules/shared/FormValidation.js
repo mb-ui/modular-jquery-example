@@ -1,6 +1,6 @@
 class FormValidation {
     constructor(containerEl, formCode = 'form') {
-        this.formEl = containerEl._findByCode(formCode);
+        this.formEl = containerEl.findByCodeAttr(formCode);
         this.formEl.validationAdapter();
     }
     validate() {
