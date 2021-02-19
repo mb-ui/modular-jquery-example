@@ -55,15 +55,9 @@ export default function ({ panelElement: pEl, containerID }) {
                     width: 400
                 }],
                 pager: pEl.findByCodeAttr('grid_pager'),// it can be '#'+pagerID or pager jquery Element,
-                sortname: 'Country',
+                sortname: 'day',
                 caption: 'data grid title'
             });
-            // searchFrom.setValues({
-            //     Capital: '',
-            //     Country: '',
-            //     PhoneNumber: [1, 3],
-            //     FromDateString: '1399/6/13'
-            // });
             pEl.findByCodeAttr('searchSubmit').click(function (e) {
                 if (searchFrom.validate())
                     $gridEl.gridAdapter('applyExternalSearch', searchFrom.getGridFilters());
