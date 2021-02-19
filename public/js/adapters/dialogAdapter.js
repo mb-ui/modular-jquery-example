@@ -8,15 +8,18 @@
             dialogClass: 'dialogAdapter',
             templateUrl: ''// additional option
         },
+        _loadTemplate: function (url) {
+            return $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'html'
+            });
+        },
         _create: function () {
             var that = this, op = this.options;
             if (op.templateUrl) {
-                that._trigger('beforeloadtemplate', null);
-                $.ajax({
-                    url: op.templateUrl,
-                    type: 'get',
-                    dataType: 'html'
-                }).then(function (data) {
+                this._trigger('beforeloadtemplate', null);
+                this._loadTemplate(op.templateUrl).then(function (data) {
                     that._trigger('afterloadtemplate', null, { data: data });
                 });
             }
