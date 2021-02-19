@@ -26,6 +26,13 @@ Example SPA project which implements dynamic tabs using treeview
 * [jstree](https://www.jstree.com/)
 
 
+## Installing Dependencies and serving
+
+`npm install` installs dependencies.
+
+`npm start` launches a server and navigates to [localhost:5000](http://localhost:5000).
+
+
 ## License
 
 MIT
