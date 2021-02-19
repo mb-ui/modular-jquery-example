@@ -2,15 +2,18 @@
   "name": "modular-jquery-example",
   "title": "modular-jquery-example",
   "version": "1.0.0",
-  "description": "A Simple Single Page Application Framework with systemJS and jquery",
+  "description": "A Simple Single Page Application with systemJS and jquery",
   "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mb-ui/modular-jquery-example.git"
   },
   "author": {
     "name": "Mohsen Biglari",
-    "email": "biglary.mohsen.new69@gmail.com"
+    "email": "mohsen.biglari.js@gmail.com"
   },
   "keywords": [
     "jquery",
@@ -35,6 +38,6 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "qunit": "^2.14.0"
+    "open": "^7.4.2"
   }
 }
