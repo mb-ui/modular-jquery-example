@@ -16,7 +16,7 @@
 }
 
 .ui-jqgrid-view>.frozen-div.ui-jqgrid-hdiv {
-    display: none;
+    /* display: none; */
 }
 
 .ui-jqgrid-view>.ui-userdata {
