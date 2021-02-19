@@ -6,7 +6,7 @@ Example SPA project which implements dynamic tabs using treeview
 
 ## Dependencies
 
-* [systemJS](https://github.com/systemjs/systemjs)
+* ![systemJS](https://github.com/systemjs/systemjs)
 * [jquery 3.5.1](https://jquery.com/)
 * [jquery ui](https://jqueryui.com/)
 * [jqGrid](https://github.com/tonytomov/jqGrid)
