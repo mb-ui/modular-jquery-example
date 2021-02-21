@@ -13,6 +13,7 @@
         });
     });
     if (typeof Promise === 'undefined') {
+        // load IE pollifyls
         var loadSystemJS = (function () {
             var i = -1;
             return function () {

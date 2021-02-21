@@ -1,5 +1,5 @@
 (function () {
-    import('./mockModule.js');
+    import('./modules/mockModule.js');
     const arrowFunctionDetection = (param = {}) => {
         let destructuringDetection = { a: 2 };
         const { a } = destructuringDetection;
@@ -9,6 +9,6 @@
     let result = arrowFunctionDetection();
     $$.supportNativeModule = true;
     $$.importModule = function (modulePath) {
-        return import('../../js/modules/' + modulePath);
+        return import('./modules/' + modulePath);
     };
 })();
