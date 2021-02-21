@@ -1,4 +1,3 @@
-var $$ = $$ || {};
 (function () {
     import('./mockModule.js');
     const arrowFunctionDetection = (param = {}) => {
@@ -8,7 +7,7 @@ var $$ = $$ || {};
         return a;
     };
     let result = arrowFunctionDetection();
-    window.supportsDynamicImport = true;
+    $$.supportNativeModule = true;
     $$.importModule = function (modulePath) {
         return import('../../js/modules/' + modulePath);
     };

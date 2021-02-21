@@ -1,12 +1,4 @@
-﻿/* #sideMenuTree.customTreeView-maxSelection i.jstree-checkbox,#sideMenuTree.customTreeView-maxSelection i.jstree-checkbox:hover {
-    cursor   : not-allowed;
-}
-#sideMenuTree.customTreeView-maxSelection a.jstree-clicked>i.jstree-checkbox {
-    pointer-events: all;
-    cursor        : pointer;
-    display       : inline-block;
-} */
-.customTreeview.customTreeView-maxSelection a.custom_a_attr>i.jstree-checkbox {
+﻿.customTreeview.customTreeView-maxSelection a.custom_a_attr>i.jstree-checkbox {
     cursor: not-allowed;
 }
 
@@ -16,11 +8,6 @@
 
 .customTreeview {
     outline: none;
-}
-
-.customTreeview .dialog,
-.customTreeview .folder {
-    pointer-events: none;
 }
 
 .customTreeview .folder>i.jstree-checkbox,

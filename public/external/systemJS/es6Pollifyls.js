@@ -1,5 +1,7 @@
-var $$ = $$ || {};
-if (!window.supportsDynamicImport) {
+(function () {
+    if ($$.supportNativeModule) {
+        return;
+    }
     $$.importModule = function (modulePath) { return System.import('./js/modules/' + modulePath); };
     var systemJsLoaderTag = document.createElement('script');
     systemJsLoaderTag.src = './external/systemJS/system.js';
@@ -30,4 +32,4 @@ if (!window.supportsDynamicImport) {
     } else {
         document.head.appendChild(systemJsLoaderTag);
     }
-}
+})();

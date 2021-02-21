@@ -1,6 +1,7 @@
 import service from './service.js';
 import createCustomTreeview from './createCustomTreeview.js';
 import savingSelected from './savingSelected.js';
+import api from '../shared/index.js';
 const maxSelection = 4, homePageID = '6', tabPrefix = 'tab_', panelPrefix = 'panel_', tabAttributeName = 'jsModulePath';
 const _openTabByNodeID = function ($tabListRootElement, nodeObj, isSelectedTab) {
     const tabObj = {
@@ -73,7 +74,7 @@ export default function ($panelElement) {
             })
             .on('folder_click.customjstree', function (e, $li) { $(this).jstree("toggle_node", $li); })
             .on('open_dialog.customjstree', function (e, node) {
-                $$.importModule(node.data.jsModulePath).then(function (result) {
+                api.importModule(node.data.jsModulePath).then(function (result) {
                     result.default({ containerID: '', panelElement: null });
                 });
             });
@@ -88,7 +89,7 @@ export default function ($panelElement) {
             $customTreeview.jstree('uncheck_node', uncheckedNodeID).jstree('deselect_node', uncheckedNodeID).removeClass('customTreeView-maxSelection');
         }).on('tabadapterbeforefirstactivate', function (e, ui) {
             var jsModulePath = ui.newTab.attr(tabAttributeName), $panelEl = ui.newPanel.append('<p>loading...</p>');
-            $$.importModule(jsModulePath).then(function (result) {
+            api.importModule(jsModulePath).then(function (result) {
                 $panelEl.empty();
                 return result.default({
                     panelElement: $panelEl,

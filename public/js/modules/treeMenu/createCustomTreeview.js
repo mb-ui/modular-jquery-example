@@ -1,7 +1,7 @@
 const createCustomTreeview = function ({ $treeEl, jstreeOptions, extraOptions }) {
     jstreeOptions = createCustomTreeview._alterJstreeOptions(jstreeOptions);
     const { maxSelection } = createCustomTreeview._alterExtraOptions(extraOptions);
-    return $treeEl.addClass('customTreeview').jstree(jstreeOptions)
+    $treeEl.addClass('customTreeview').jstree(jstreeOptions)
         .on('select_node.jstree', function (e, data) {
             const { event } = data;
             if (typeof event === 'object' && event !== null)
@@ -20,17 +20,21 @@ const createCustomTreeview = function ({ $treeEl, jstreeOptions, extraOptions })
             const { event } = data;
             if (typeof event === 'object' && event !== null)
                 $treeEl.trigger('uncheck_node.customjstree', [data]);
-        })
-        .on('click', function (e) {
-            const el = $(e.target);
-            if (el.is('li')) { // li click
-                const className = el.children('a.jstree-anchor.custom_a_attr').first()[0].className;
-                if (className.includes('folder'))
-                    $treeEl.trigger('folder_click.customjstree', [$(e.target)]);
-                else if (className.includes('dialog'))
-                    $treeEl.trigger('open_dialog.customjstree', [$treeEl.jstree('get_node', el.attr('id'))]);
+        })[0]
+        .addEventListener("click", function (e) {
+            const $el = $(e.target);
+            if ($el.hasClass('folder') || $el.hasClass(createCustomTreeview.defaultOptions.nodeTypeIcons.folder)) {
+                $treeEl.trigger('folder_click.customjstree', [$el]);
+                e.stopPropagation();
+            } else if ($el.hasClass('dialog')) {
+                $treeEl.trigger('open_dialog.customjstree', [$treeEl.jstree('get_node', $el.attr('id'))]);
+                e.stopPropagation();
+            } else if ($el.hasClass(createCustomTreeview.defaultOptions.nodeTypeIcons.dialog)) {
+                $treeEl.trigger('open_dialog.customjstree', [$treeEl.jstree('get_node', $el.parent().attr('id'))]);
+                e.stopPropagation();
             }
-        });
+        }, true);
+    return $treeEl;
 };
 createCustomTreeview.defaultOptions = {
     nodeTypeIcons: {
