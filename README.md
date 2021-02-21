@@ -7,11 +7,12 @@ Example SPA project which implements dynamic tabs using treeview
 
 ## Features
 
-* **ES6 support**
 * **Using ES6 Modules**
-* **IE9 Support**
-* **Using Runtime Transpiler** — for old browsers
-* **Implement Dynamic Tabs Using Treeview**
+* **IE9 support**
+* **Compile ES6 script content on the fly with traceur** — for older browsers that don't support ES6 script
+* **Extending and creating stateful jQuery plugins by using jQuery UI widget factory**
+* **Implement dynamic Tabs using Treeview**
+* **Restrict Treeview node selection and Tabs to 4 and storing them in HTML5 localStorage**
 
 
 ## Dependencies
@@ -26,7 +27,7 @@ Example SPA project which implements dynamic tabs using treeview
 * [jstree](https://www.jstree.com/)
 
 
-## Installing Dependencies and serving
+## Installing Dependencies and Serving
 
 `npm install` installs dependencies.
 
