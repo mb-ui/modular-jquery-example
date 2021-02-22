@@ -1,5 +1,5 @@
 # modular-jquery-example
-Example SPA project which implements dynamic tabs using treeview
+Example Single Page Application with modular jQuery
 
 ![demo gif](https://mb-ui.github.io/modular-jquery-example/public/img/modular-jquery-example.gif)
 ### [Demo](https://mb-ui.github.io/modular-jquery-example/public/index.html)
@@ -11,7 +11,7 @@ Example SPA project which implements dynamic tabs using treeview
 * **IE9 support**
 * **Compile ES6 script content on the fly with traceur** — for older browsers that don't support ES6 script
 * **Extending and creating stateful jQuery plugins by using jQuery UI widget factory**
-* **Implement dynamic Tabs using Treeview**
+* **Dynamic Tabs based on TreeView Node Selection**
 * **Restrict Treeview node selection and Tabs to 4 and storing them in HTML5 localStorage**
 
 
