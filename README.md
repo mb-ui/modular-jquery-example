@@ -1,5 +1,5 @@
 # modular-jquery-example
-Example Single Page Application with modular jQuery
+Single Page Application example with modular jQuery
 
 ![demo gif](https://mb-ui.github.io/modular-jquery-example/public/img/modular-jquery-example.gif)
 ### [Demo](https://mb-ui.github.io/modular-jquery-example/public/index.html)
