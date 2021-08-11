@@ -1,7 +1,12 @@
 # modular-jquery-example
 Single Page Application example with modular jQuery
 
+## Screenshot
+
 ![demo gif](https://mb-ui.github.io/modular-jquery-example/public/img/modular-jquery-example.gif)
+
+## Example
+
 ### [Demo](https://mb-ui.github.io/modular-jquery-example/public/index.html)
 
 
@@ -29,7 +34,7 @@ Single Page Application example with modular jQuery
 
 ## Installing Dependencies and Serving
 
-`npm install` installs dependencies.
+`npm install` installs all dev dependencies in package.json.
 
 `npm start` launches a server and navigates to [localhost:5000](http://localhost:5000).
 
